@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context-2.5.xsd
+        http://www.springframework.org/schema/util
+        http://www.springframework.org/schema/util/spring-util.xsd">
+
+    <bean id="address2" class="org.example.Address" primary="true" name="address2">
+        <property name="street" value="Mahaveer Nagar"/>
+        <property name="house" value="22"/>
+    </bean>
+
+    <bean id="address1" class="org.example.Address" name="address1">
+        <property name="street" value="Somnath Nagar"/>
+        <property name="house" value="27"/>
+    </bean>
+    
+    <bean id="student" name="student" class="org.example.Student" autowire="byType">
+        <property name="name" value="Shreya Kalluraya"/>
+<!--        <property name="address" ref="address1"/>-->
+<!-- this we will use only when we have two address so to give it any one address we will use ref-->
+    </bean>
+
+</beans>

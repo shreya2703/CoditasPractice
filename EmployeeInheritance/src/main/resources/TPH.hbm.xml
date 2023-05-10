@@ -1,0 +1,19 @@
+<!--<hibernate-mapping>-->
+<!--    <class name="org.example.Employee" table="TPH_Emp" discriminator-value="EMP">-->
+<!--        -->
+<!--        -->
+<!--        -->
+<!--        -->
+<!--        -->
+<!--        -->
+<!--        -->
+<!--        -->
+<!--        -->
+<!--    </class>-->
+<!--    -->
+<!--    -->
+<!--    -->
+<!--    -->
+<!--    -->
+<!--</hibernate-mapping>-->
+

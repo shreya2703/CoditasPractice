@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context-2.5.xsd
+        http://www.springframework.org/schema/util
+        http://www.springframework.org/schema/util/spring-util.xsd">
+    <bean class="org.example.Participants" id="p1">
+        <property name="name" value="Salman"></property>
+        <property name="address" value="Pune"></property>
+    </bean>
+    <bean class="org.example.Participants" id="p2">
+        <property name="name" value="Shreya"></property>
+        <property name="address" value="Dewas"></property>
+    </bean>
+    <bean class="org.example.Participants" id="p3">
+        <property name="name" value="Krati"></property>
+        <property name="address" value="Betul"></property>
+    </bean>
+
+    <bean class="org.example.DID" id="did">
+        <property name="seasonName" value="Season2"></property>
+        <property name="brandPartners">
+            <list>
+                <value>Bournvita</value>
+                <value>TVS</value>
+                <value>ByJu</value>
+            </list>
+        </property>
+        <property name="participants">
+            <map>
+                <entry key-ref="p1" value="TeamRemo"></entry>
+                <entry key-ref="p2" value="TeamDharmesh"></entry>
+                <entry key-ref="p3" value="TeamShakti"></entry>
+            </map>
+        </property>
+    </bean>
+
+
+    </beans>

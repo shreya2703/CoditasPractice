@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context-2.5.xsd
+        http://www.springframework.org/schema/util
+        http://www.springframework.org/schema/util/spring-util.xsd">
+
+<!--    <util:list list-class="java.util.LinkedList" id="phones">-->
+<!--        <value>4564</value>-->
+<!--        <value>45448</value>-->
+<!--    </util:list>-->
+
+<!--    <util:set set-class="java.util.HashSet" id="sets">-->
+<!--        <value>Dewas</value>-->
+<!--        <value>Indore</value>-->
+<!--    </util:set>-->
+
+<!--    <bean id="p1" class="org.example.Emp">-->
+<!--        <property name="name" value="Shreya"></property>-->
+<!--        <property name="phone">-->
+<!--            <ref bean="phones"></ref>-->
+<!--            <list>-->
+<!--              <value>4564</value>-->
+<!--              <value>45448</value>-->
+<!--            </list>-->
+<!--        </property>-->
+
+<!--        <property name="address">-->
+<!--            <ref bean="sets"></ref>-->
+<!--            <set>-->
+<!--                <value>Dewas</value>-->
+<!--                <value>Indore</value>-->
+<!--            </set>-->
+<!--        </property>-->
+<!--        <property name="course">-->
+<!--            <map>-->
+<!--                <entry key="Java" value="2"></entry>-->
+<!--                <entry key="C" value="6"></entry>-->
+<!--            </map>-->
+<!--        </property>-->
+<!--    </bean>-->
+<!--    <context:annotation-config></context:annotation-config>-->
+<!--    <bean id="constructor" class="org.example.Person">-->
+<!--        <constructor-arg value="Shreya"></constructor-arg>-->
+<!--        <constructor-arg value="Dewas"></constructor-arg>-->
+<!--    </bean>-->
+<!--    <bean id="const" class="org.example.Person">-->
+<!--    <constructor-arg value="krati"></constructor-arg>-->
+<!--    <constructor-arg value="betul"></constructor-arg>-->
+<!--</bean>-->
+
+<!--    <bean id ="p1" class="org.example.Emp">-->
+<!--        <property name="name" value="Kalluraya"></property>-->
+<!--    </bean>-->
+
+<context:component-scan base-package="org.example"></context:component-scan>
+    <util:list list-class="java.util.LinkedList" id="phones">
+        <value>4564</value>
+        <value>45448</value>
+    </util:list>
+
+</beans>
