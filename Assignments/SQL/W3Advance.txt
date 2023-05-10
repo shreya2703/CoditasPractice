@@ -1,0 +1,215 @@
+1) CREATE DATABASE
+
+mysql> CREATE DATABASE W3SchoolPractice;
+Query OK, 1 row affected (0.02 sec)
+
+2)DROP DATABASE
+
+mysql> drop database W3SchoolPractice;
+Query OK, 0 rows affected (0.03 sec)
+
+3)BACKUP
+
+
+4)CREATE TABLE
+
+mysql> create table demo_student(sid int primary key,sname varchar(20),scity varchar(20));
+Query OK, 0 rows affected (0.10 sec)
+
+5)DROP TABLE
+
+mysql> drop table demo_student;
+Query OK, 0 rows affected (0.04 sec)
+
+
+6)TRUNCATE TABLE
+
+mysql> create table demo_student(sid int primary key,sname varchar(20),scity varchar(20));
+Query OK, 0 rows affected (0.07 sec)
+
+mysql> insert into demo_student values(1,"Shreya","Dewas");
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into demo_student values(2,"Krati","Betul");
+Query OK, 1 row affected (0.01 sec)
+
+mysql> truncate table demo_student;
+Query OK, 0 rows affected (0.10 sec)
+
+mysql> desc demo_student;
++-------+-------------+------+-----+---------+-------+
+| Field | Type        | Null | Key | Default | Extra |
++-------+-------------+------+-----+---------+-------+
+| sid   | int         | NO   | PRI | NULL    |       |
+| sname | varchar(20) | YES  |     | NULL    |       |
+| scity | varchar(20) | YES  |     | NULL    |       |
++-------+-------------+------+-----+---------+-------+
+3 rows in set (0.01 sec)
+
+
+7)Alter Table
+
+mysql> alter table demo_student add subject varchar(20);
+Query OK, 0 rows affected (0.04 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc student;
++---------+-------------+------+-----+----------+----------------+
+| Field   | Type        | Null | Key | Default  | Extra          |
++---------+-------------+------+-----+----------+----------------+
+| s_id    | int         | NO   | PRI | NULL     | auto_increment |
+| s_name  | varchar(40) | YES  |     | NULL     |                |
+| address | varchar(40) | YES  |     | NULL     |                |
+| age     | int         | YES  |     | NULL     |                |
+| email   | varchar(60) | YES  |     | NULL     |                |
+| subject | varchar(50) | YES  |     | sanskrit |                |
++---------+-------------+------+-----+----------+----------------+
+6 rows in set (0.00 sec)
+
+
+8)Constraints
+
+mysql> alter table demo_student modify subject varchar(20) default 'History';
+Query OK, 0 rows affected (0.02 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> alter table demo_student add age int check(age>20);
+Query OK, 0 rows affected (0.16 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> insert into demo_student(sid,age) values(1,15);
+ERROR 3819 (HY000): Check constraint 'demo_student_chk_1' is violated.
+
+
+9)NOT NULL
+
+mysql> alter table student modify age int not null;
+Query OK, 0 rows affected (0.15 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+
+10)UNIQUE
+
+mysql> alter table demo_student add unique(sid);
+Query OK, 0 rows affected (0.05 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+11)Primary Key
+
+mysql> create table demo_student(sid int primary key,sname varchar(20),scity varchar(20));
+Query OK, 0 rows affected (0.10 sec)
+
+
+12)Foreign Key
+
+mysql> create table address(addid int primary key,address varchar(20),lane varchar(20),sid int, foreign key(sid) references demo_student(sid));
+Query OK, 0 rows affected (0.08 sec)
+
+mysql> desc address;
++---------+-------------+------+-----+---------+-------+
+| Field   | Type        | Null | Key | Default | Extra |
++---------+-------------+------+-----+---------+-------+
+| addid   | int         | NO   | PRI | NULL    |       |
+| address | varchar(20) | YES  |     | NULL    |       |
+| lane    | varchar(20) | YES  |     | NULL    |       |
+| sid     | int         | YES  | MUL | NULL    |       |
++---------+-------------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+
+
+13)Check
+
+mysql> alter table demo_student add age int check(age>20);
+Query OK, 0 rows affected (0.16 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> insert into demo_student(sid,age) values(1,15);
+ERROR 3819 (HY000): Check constraint 'demo_student_chk_1' is violated.
+
+
+14)DEFAULT
+
+mysql> alter table demo_student modify subject varchar(20) default 'History';
+Query OK, 0 rows affected (0.02 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+15)INDEX
+
+mysql> CREATE INDEX INDEX_ID ON DEMO_STUDENT(SID);
+Query OK, 0 rows affected (0.05 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> drop index index_id on demo_student;
+Query OK, 0 rows affected (0.03 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+16)Auto Increment
+
+mysql> alter table demo_student modify sid int auto_increment;
+Query OK, 0 rows affected (0.19 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc demo_student;
++---------+-------------+------+-----+---------+----------------+
+| Field   | Type        | Null | Key | Default | Extra          |
++---------+-------------+------+-----+---------+----------------+
+| sid     | int         | NO   | PRI | NULL    | auto_increment |
+| sname   | varchar(20) | YES  |     | NULL    |                |
+| scity   | varchar(20) | YES  |     | NULL    |                |
+| subject | varchar(20) | YES  |     | History |                |
+| age     | int         | YES  |     | NULL    |                |
++---------+-------------+------+-----+---------+----------------+
+5 rows in set (0.00 sec)
+
+
+17)DATES
+
+mysql> alter table demo_student add birthdate date;
+Query OK, 0 rows affected (0.06 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> select * from demo_student;
+Empty set (0.00 sec)
+
+mysql> insert into demo_student values(1,"Shreya","Dewas","CSE",'2001-03-27');
+ERROR 1136 (21S01): Column count doesn't match value count at row 1
+mysql> desc demo_student;
++-----------+-------------+------+-----+---------+----------------+
+| Field     | Type        | Null | Key | Default | Extra          |
++-----------+-------------+------+-----+---------+----------------+
+| sid       | int         | NO   | PRI | NULL    | auto_increment |
+| sname     | varchar(20) | YES  |     | NULL    |                |
+| scity     | varchar(20) | YES  |     | NULL    |                |
+| subject   | varchar(20) | YES  |     | History |                |
+| age       | int         | YES  |     | NULL    |                |
+| birthdate | date        | YES  |     | NULL    |                |
++-----------+-------------+------+-----+---------+----------------+
+6 rows in set (0.00 sec)
+
+mysql> insert into demo_student values(1,"Shreya","Dewas","CSE",21,'2001-03-27');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from demo_student;
++-----+--------+-------+---------+------+------------+
+| sid | sname  | scity | subject | age  | birthdate  |
++-----+--------+-------+---------+------+------------+
+|   1 | Shreya | Dewas | CSE     |   21 | 2001-03-27 |
++-----+--------+-------+---------+------+------------+
+1 row in set (0.00 sec)
+
+mysql> select * from demo_student where birthdate='2001-03-27';
++-----+--------+-------+---------+------+------------+
+| sid | sname  | scity | subject | age  | birthdate  |
++-----+--------+-------+---------+------+------------+
+|   1 | Shreya | Dewas | CSE     |   21 | 2001-03-27 |
++-----+--------+-------+---------+------+------------+
+1 row in set (0.00 sec)
+
+
+18)VIEWS
+
+mysql> create view v9 as select sid,sname,scity from demo_student;
+Query OK, 0 rows affected (0.02 sec)
+
+
+

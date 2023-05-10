@@ -1,0 +1,113 @@
+public class connectionCode{
+
+static Connection connections(){
+
+Class.forName(com.mysql.jdbc.Driver);
+return DriverManager.getConnection("jdbc:mysql://localhost:3306/StudentJDBC","root","Star@123");
+
+}
+}
+
+===============================================================================================================================================
+Main class By Statement
+
+
+
+
+Connectionn con = ConnectionCode.connections();
+
+Statement st = con.createStatement;
+
+
+String sql = "insert into "
+st.executeUpdate(sql)
+
+ResultSet rs = st.executeQuey(selet * from)
+
+while(rs.next()){
+
+sout(rs.getInt(1))
+
+}
+
+
+
+===============================================================================================================================================
+Main Class By Prepared
+
+
+
+Connection con = ConnectionCode.connections();
+
+PreparedStatement pst = con.prepreStatement("insert into values(?)");
+pst.setInt(1,56);
+pst.executeUpdate();
+
+
+
+
+==============================================================================================================================================
+Main Class By Callable 
+
+
+Connection con = ConnectionCode.conncetions();
+
+
+CallableStatement cs = con.prepareCall("call insertRecords(?)");
+cs.setInt(1,45);
+cs.execute();
+
+
+
+
+Call procedure insert records(in sid primary key , in name varchar(25), in marks varchar(25)
+begin
+insert into table name values(sid , sname,percentage);
+end
+$
+
+
+CREATE PROCEDURE MyProc
+AS
+BEGIN
+SELECT * FROM MyTable
+END
+
+
+===========================================================================================================================================
+Create Database Wala
+
+
+try{
+Statement st = con.createStatement();
+
+try{
+
+ResultSet rs = st.executeQuery()
+
+catch{
+      st.executeUpdate();
+
+}
+
+
+
+
+=================================================================================================================================================
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

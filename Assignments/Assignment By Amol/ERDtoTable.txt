@@ -1,0 +1,252 @@
+mysql> create database reading_bookstore_db;
+Query OK, 1 row affected (0.02 sec)
+
+mysql> use reading_bookstore_db;
+Database changed
+
+mysql> create table publisher(publisherName varchar(20) primary key, city varchar(20),country varchar(20),
+    -> president varchar(20),yearFounded int);
+Query OK, 0 rows affected (0.08 sec)
+
+mysql> create table book(bookNumber int primary key,bookName varchar(20),publicationYear int,pages int,
+    -> publisherName varchar(20),
+    -> foreign key(publisherName) references publisher(publisherName));
+Query OK, 0 rows affected (0.09 sec)
+
+mysql> create table author(authorNumber int primary key,authorName varchar(20),yearBorn Date,yearDied Date);
+Query OK, 0 rows affected (0.07 sec)
+
+mysql> create table wrote(bookNumber int,authorNumber int,
+    -> primary key(bookNumber,authorNumber),
+    -> foreign key(bookNumber) references book(bookNumber),
+    -> foreign key(authorNumber) references author(authorNumber));
+Query OK, 0 rows affected (0.09 sec)
+
+
+mysql> create table customer(customerNumber int primary key,customerName varchar(20),Street varchar(20),city varchar(20),
+    -> state varchar(20),country varchar(20));
+Query OK, 0 rows affected (0.07 sec)
+
+mysql> create table Sale(bookNumber int,CustomerNumber int,date Date,price int , quantity int, primary key(bookNumber,customerNumber),
+    -> foreign key(bookNumber) references book(bookNumber),
+    -> foreign key(CustomerNumber) references customer(customerNumber));
+Query OK, 0 rows affected (0.10 sec)
+
+
+
+
+
+
+=======================================================================================================================================================
+
+
+
+
+mysql> create database world_music_association;
+Query OK, 1 row affected (0.01 sec)
+
+mysql> use world_music_association;
+Database changed
+
+mysql> create table orchestra(orchestraName varchar(20) primary key,city varchar(20),
+    -> country varchar(20),musicDirector varchar(20));
+Query OK, 0 rows affected (0.07 sec)
+
+mysql> create table musician(musicianNumber int primary key,musicianName varchar(20),
+    -> intrument varchar(20),annualSalary int,orchestraName varchar(20),
+    -> foreign key(orchestraName) references orchestra(orchestraName));
+Query OK, 0 rows affected (0.10 sec)
+
+
+mysql> create table degree(musicianNumber int,degree int,universityYear int,
+    -> primary key(musicianNumber,degree),
+    -> foreign key(musicianNumber) references musician(musicianNumber));
+Query OK, 0 rows affected (0.07 sec)
+
+mysql> create table composer(composerName varchar(20) primary key,country varchar(20),DateofBirth Date);
+Query OK, 0 rows affected (0.08 sec)
+
+mysql> create table composition(compositionName varchar(20),composerName varchar(20),year Date,
+    -> primary key(compositionName,composerName),
+    -> foreign key(composerName) references composer(composerName));
+Query OK, 0 rows affected (0.12 sec)
+
+mysql> create table recording(orchestraName varchar(20),compositionName varchar(20),composerName varchar(20),
+    -> year Date,price int,primary key(orchestraName,compositionName,composerName),
+    -> foreign key(orchestraName) references orchestra(orchestraName),
+    -> foreign key(compositionName) references composition(compositionName),
+    -> foreign key(composerName) references composer(composerName));
+Query OK, 0 rows affected (0.11 sec)
+
+
+
+
+=============================================================================================================================================
+
+
+
+mysql> create database rent_a_car;
+Query OK, 1 row affected (0.01 sec)
+
+mysql> use rent_a_car;
+Database changed
+
+mysql> create table manufacturer(manufacturerName varchar(20) primary key,manufacturerCountry varchar(20),
+    -> salesRepName varchar(20),salesRepNumber int);
+Query OK, 0 rows affected (0.08 sec)
+
+mysql> create table car(carSerialNumber int primary key,model varchar(20),
+    -> year Date, class varchar(20),manufacturerName varchar(20),
+    -> foreign key(manufacturerName) references manufacturer(manufacturerName));
+Query OK, 0 rows affected (0.09 sec)
+
+
+mysql> create table maintenance_event(repair_number int primary key,dates date,procedures varchar(50),
+       mileage int,repair_time time,carserialnumber int,foreign key(carSerialNumber) references car(carSerialNumber));
+Query OK, 0 rows affected (0.10 sec)
+
+
+mysql> create table customer(customerNumber int primary key,customerName varchar(20),customerAddress varchar(20),
+    -> customerCreditRating int);
+Query OK, 0 rows affected (0.07 sec)
+
+
+mysql> create table rental(carSerialNumber int,customerNumber int ,rentalDate Date,returnDate Date,totalCost int,
+    ->  primary key(carSerialNumber,customerNumber),
+    -> foreign key(carSerialNumber) references car(carSerialNumber),
+    -> foreign key(customerNumber) references customer(customerNumber));
+Query OK, 0 rows affected (0.09 sec)
+
+
+
+
+
+
+============================================================================================================================================
+
+
+
+
+mysql> create database central_hospital;
+Query OK, 1 row affected (0.03 sec)
+
+mysql> use central_hospital;
+Database changed
+
+mysql> create table insurance_company(companyName varchar(20) primary key,telephone int , city varchar(20),state varchar(20),president varchar(20));
+Query OK, 0 rows affected (0.09 sec)
+
+mysql> create table patient(patientNumber int primary key,patientName varchar(20),age int,address varchar(20),city varchar(20),state varchar(20));
+Query OK, 0 rows affected (0.07 sec)
+
+
+mysql> create table claim(claimNumber int primary key,companyName varchar(20),patientNumber int,date Date,diagnosis varchar(20),amount int,
+    -> foreign key(companyName) references insurance_company(companyName),
+    ->  foreign key(patientNumber) references patient(patientNumber));
+Query OK, 0 rows affected (0.15 sec)
+
+
+mysql> create table department(departmentNumber int primary key,officeNumber int,telephone int,administrator varchar(20));
+Query OK, 0 rows affected (0.09 sec)
+
+
+mysql> create table nurse(nurseNumber int primary key,nurseName varchar(20),certification varchar(20),yearHired Date,departmentNumber int,supervisor int,
+    -> foreign key(departmentNumber) references department(departmentNumber),
+    ->  foreign key(supervisor) references nurse(nurseNumber));
+Query OK, 0 rows affected (0.10 sec)
+
+
+mysql> create table doctor(doctorNumber int primary key,doctorName varchar(20),officeNumber int ,telephone int,departmentNumber int,manager int,
+    ->  foreign key(departmentNumber) references department(departmentNumber),
+    -> foreign key(manager) references doctor(doctorNumber));
+Query OK, 0 rows affected (0.10 sec)
+
+
+mysql> create table degree(doctorNumber int,degreeType varchar(20),major varchar(20),university varchar(20),year Date,
+    -> primary key(doctorNumber,degreeType),
+    -> foreign key(doctorNumber) references doctor(doctorNumber));
+Query OK, 0 rows affected (0.07 sec)
+
+
+mysql> create table operationType(operationName varchar(20) primary key ,duration int,cost int);
+Query OK, 0 rows affected (0.07 sec)
+
+mysql> create table operation(operationName varchar(20),doctorNumber int,patientNumber int,date Date,
+    -> startTime Time,endTime Time,operatingRoomNumber int,
+    -> primary key(operationName,doctorNumber,patientNumber,date),
+    -> foreign key(doctorNumber) references doctor(doctorNumber),
+    -> foreign key(patientNumber) references patient(patientNumber),
+    -> foreign key(operationName) references operationType(operationName));
+Query OK, 0 rows affected (0.10 sec)
+
+
+
+
+
+
+
+===================================================================================================================================================
+
+
+
+mysql> create database HappyCruise;
+Query OK, 1 row affected (0.05 sec)
+
+mysql> use HappyCruise;
+Database changed
+
+mysql> create table Supplier(SupplierNumber int primary key , SupplierName varchar(20),SupplierAddress varchar(20),SalesRep varchar(20));
+Query OK, 0 rows affected (0.10 sec)
+
+mysql> create table ship(shipNumber int primary key,shipName varchar(20),shipBuilder varchar(20),lunchDate Date,grossWeight int);
+Query OK, 0 rows affected (0.10 sec)
+
+mysql> create table cruise(cruiseNumber int primary key,startDate Date,endDate Date,cruiseDirector varchar(20),shipNumber int,foreign key(shipNumber) references ship(shipNumber));
+Query OK, 0 rows affected (0.09 sec)
+
+mysql> create table product(productNumber int primary key,productCategory varchar(20),unitPrice int);
+Query OK, 0 rows affected (0.07 sec)
+
+mysql> create table provision(SupplierNumber int,productNumber int,cruiseNumber int,quantity int,date Date,
+    -> primary key(SupplierNumber,productNumber,cruiseNumber),
+    -> foreign key(SupplierNumber) references Supplier(SupplierNumber),
+    -> foreign key(productNumber) references product(productNumber),
+    -> foreign key(cruiseNumber) references cruise(cruiseNumber));
+Query OK, 0 rows affected (0.10 sec)
+
+
+mysql> create table passenger(passengerNumber int primary key,passengerName varchar(20),homeAddress varchar(20),telephone int,headOfFamiliy int,
+    -> foreign key(headOfFamiliy) references passenger(passengerNumber
+    -> ));
+Query OK, 0 rows affected (0.09 sec)
+
+mysql> create table toured(passengerNumber int , cruiseNumber int , cabinNumber int,fare int,
+    -> primary key(passengerNumber,cruiseNumber),
+    -> foreign key(cruiseNumber) references cruise(cruiseNumber),
+    -> foreign key(passengerNumber) references passenger(passengerNumber));
+Query OK, 0 rows affected (0.09 sec)
+
+mysql> create table port(portName varchar(20), country varchar(20),NoOfDocks int , portManager varchar(20),
+    -> primary key(portName,country));
+Query OK, 0 rows affected (0.07 sec)
+
+mysql> create table tour(tourNumber int primary key,tourName varchar(20),duration int , price int);
+Query OK, 0 rows affected (0.07 sec)
+
+
+mysql> create table visit(cruiseNumber int,portName varchar(20),country varchar(20),arrivalDate Date,departDate Date,
+    -> primary key(portName,country,cruiseNumber),
+    ->  foreign key(cruiseNumber) references cruise(cruiseNumber),
+    ->  foreign key(portName,country) references port(portName,country));
+Query OK, 0 rows affected (0.10 sec)
+
+
+mysql> create table toured2(passengerNumber int,cruiseNumber int, tourNumber int,date Date,
+    -> primary key(passengerNumber,cruiseNumber,tourNumber),
+    -> foreign key(cruiseNumber) references cruise(cruiseNumber),
+    -> foreign key(passengerNumber) references passenger(passengerNumber),
+    -> foreign key(tourNumber) references tour(tourNumber));
+Query OK, 0 rows affected (0.10 sec)
+
+
+

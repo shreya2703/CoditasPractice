@@ -1,0 +1,2146 @@
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| performance_schema |
+| practice           |
+| student            |
+| sys                |
++--------------------+
+6 rows in set (0.00 sec)
+
+mysql> use practice;
+Database changed
+
+mysql> show tables;
++--------------------+
+| Tables_in_practice |
++--------------------+
+| composite          |
+| student            |
++--------------------+
+2 rows in set (0.01 sec)
+
+mysql> desc student;
++---------+-------------+------+-----+---------+----------------+
+| Field   | Type        | Null | Key | Default | Extra          |
++---------+-------------+------+-----+---------+----------------+
+| s_id    | int         | NO   | PRI | NULL    | auto_increment |
+| s_name  | varchar(40) | YES  |     | NULL    |                |
+| address | varchar(40) | YES  |     | NULL    |                |
+| age     | int         | YES  |     | NULL    |                |
+| email   | varchar(60) | YES  |     | NULL    |                |
++---------+-------------+------+-----+---------+----------------+
+5 rows in set (0.00 sec)
+
+mysql> select * from student;
++------+--------+---------+------+-------+
+| s_id | s_name | address | age  | email |
++------+--------+---------+------+-------+
+|    1 | Shreya | Dewas   | NULL | NULL  |
+|    2 | Krati  | Indore  | NULL | NULL  |
+|    3 | Harini | AP      |   19 | NULL  |
++------+--------+---------+------+-------+
+3 rows in set (0.00 sec)
+
+mysql> desc composite;
++------------+-------------+------+-----+---------+-------+
+| Field      | Type        | Null | Key | Default | Extra |
++------------+-------------+------+-----+---------+-------+
+| student_id | int         | NO   | PRI | NULL    |       |
+| name       | varchar(40) | YES  |     | NULL    |       |
+| course     | varchar(40) | NO   | PRI | NULL    |       |
+| marks      | int         | YES  |     | NULL    |       |
++------------+-------------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+
+mysql> select * from department;
+ERROR 1146 (42S02): Table 'practice.department' doesn't exist
+mysql> select * from composite;
++------------+--------+--------+-------+
+| student_id | name   | course | marks |
++------------+--------+--------+-------+
+|        201 | Shreya | DBMS   |    45 |
+|        201 | Shreya | OS     |    67 |
+|        301 | Harini | os     |    90 |
++------------+--------+--------+-------+
+3 rows in set (0.00 sec)
+
+mysql> create database Company;
+Query OK, 1 row affected (0.01 sec)
+
+mysql>  create table employee(eid int primary key,ename varchar(40),deptid int, mgrid int);
+Query OK, 0 rows affected (0.08 sec)
+
+mysql> insert into employee values(1,"Shreya",10,8);
+Query OK, 1 row affected (0.01 sec)
+
+mysql>  insert into employee value(2,"simran",20,9);
+Query OK, 1 row affected (0.02 sec)
+
+mysql> insert into employee value(3,"Saloni",30,10);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> create table department(deptid int primary key,dname varchar(40),city varchar(40));
+Query OK, 0 rows affected (0.09 sec)
+
+mysql> insert into department values(10,"IT","mumbai");
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into department values(20,"Sales","chennai");
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into department values(30,"HR","pune");
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from employee;
++-----+--------+--------+-------+
+| eid | ename  | deptid | mgrid |
++-----+--------+--------+-------+
+|   1 | Shreya |     10 |     8 |
+|   2 | simran |     20 |     9 |
+|   3 | Saloni |     30 |    10 |
++-----+--------+--------+-------+
+3 rows in set (0.00 sec)
+
+mysql> select * from department;
++--------+-------+---------+
+| deptid | dname | city    |
++--------+-------+---------+
+|     10 | IT    | mumbai  |
+|     20 | Sales | chennai |
+|     30 | HR    | pune    |
++--------+-------+---------+
+3 rows in set (0.00 sec)
+
+mysql> select eid,ename,deptid from employee;
++-----+--------+--------+
+| eid | ename  | deptid |
++-----+--------+--------+
+|   1 | Shreya |     10 |
+|   2 | simran |     20 |
+|   3 | Saloni |     30 |
++-----+--------+--------+
+3 rows in set (0.00 sec)
+
+mysql> select ename,deptid from employee;
++--------+--------+
+| ename  | deptid |
++--------+--------+
+| Shreya |     10 |
+| simran |     20 |
+| Saloni |     30 |
++--------+--------+
+3 rows in set (0.00 sec)
+
+
+
+
+mysql> select ename,deptid from employee;
++--------+--------+
+| ename  | deptid |
++--------+--------+
+| Shreya |     10 |
+| simran |     20 |
+| Saloni |     30 |
++--------+--------+
+3 rows in set (0.00 sec)
+
+mysql> select ename from employee;
++--------+
+| ename  |
++--------+
+| Shreya |
+| simran |
+| Saloni |
++--------+
+3 rows in set (0.00 sec)
+
+
+mysql> select 'krishna' from employee;
++---------+
+| krishna |
++---------+
+| krishna |
+| krishna |
+| krishna |
++---------+
+3 rows in set (0.00 sec)
+
+mysql> select * from employee;
++-----+--------+--------+-------+
+| eid | ename  | deptid | mgrid |
++-----+--------+--------+-------+
+|   1 | Shreya |     10 |     8 |
+|   2 | simran |     20 |     9 |
+|   3 | Saloni |     30 |    10 |
++-----+--------+--------+-------+
+3 rows in set (0.00 sec)
+
+mysql> use practice;
+Database changed
+mysql> insert into student(s_id,s_name,age)values(8,"Simran",30);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from student;
++------+--------+---------+------+-------+
+| s_id | s_name | address | age  | email |
++------+--------+---------+------+-------+
+|    1 | Shreya | Dewas   | NULL | NULL  |
+|    2 | Krati  | Indore  | NULL | NULL  |
+|    3 | Harini | AP      |   19 | NULL  |
+|    8 | Simran | NULL    |   30 | NULL  |
++------+--------+---------+------+-------+
+4 rows in set (0.00 sec)
+
+mysql> insert into student(s_id,age,s_name) values(9,24,"Amol");
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from student;
++------+--------+---------+------+-------+
+| s_id | s_name | address | age  | email |
++------+--------+---------+------+-------+
+|    1 | Shreya | Dewas   | NULL | NULL  |
+|    2 | Krati  | Indore  | NULL | NULL  |
+|    3 | Harini | AP      |   19 | NULL  |
+|    8 | Simran | NULL    |   30 | NULL  |
+|    9 | Amol   | NULL    |   24 | NULL  |
++------+--------+---------+------+-------+
+5 rows in set (0.00 sec)
+
+
+mysql> update student set age=23 where s_id=1;
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from student;
++------+--------+---------+------+-------+
+| s_id | s_name | address | age  | email |
++------+--------+---------+------+-------+
+|    1 | Shreya | Dewas   |   23 | NULL  |
+|    2 | Krati  | Indore  | NULL | NULL  |
+|    3 | Harini | AP      |   19 | NULL  |
+|    8 | Simran | NULL    |   30 | NULL  |
+|    9 | Amol   | NULL    |   24 | NULL  |
++------+--------+---------+------+-------+
+5 rows in set (0.00 sec)
+
+mysql> delete from student where s_id=2;
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from student;
++------+--------+---------+------+-------+
+| s_id | s_name | address | age  | email |
++------+--------+---------+------+-------+
+|    1 | Shreya | Dewas   |   23 | NULL  |
+|    3 | Harini | AP      |   19 | NULL  |
+|    8 | Simran | NULL    |   30 | NULL  |
+|    9 | Amol   | NULL    |   24 | NULL  |
++------+--------+---------+------+-------+
+4 rows in set (0.00 sec)
+
+
+
+
+
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| company            |
+| information_schema |
+| mysql              |
+| performance_schema |
+| practice           |
+| student            |
+| sys                |
++--------------------+
+7 rows in set (0.00 sec)
+
+mysql> use student;
+Database changed
+mysql> show tables;
++-------------------+
+| Tables_in_student |
++-------------------+
+| facebook          |
+| person            |
+| student_detail    |
++-------------------+
+3 rows in set (0.00 sec)
+
+mysql> drop table person;
+Query OK, 0 rows affected (0.05 sec)
+
+mysql> show tables;
++-------------------+
+| Tables_in_student |
++-------------------+
+| facebook          |
+| student_detail    |
++-------------------+
+2 rows in set (0.00 sec)
+
+mysql> use practice;
+Database changed
+mysql> show tables;
++--------------------+
+| Tables_in_practice |
++--------------------+
+| composite          |
+| department         |
+| employee           |
+| student            |
++--------------------+
+4 rows in set (0.00 sec)
+
+mysql> alter table student add marks int;
+Query OK, 0 rows affected (0.05 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc student;
++---------+-------------+------+-----+---------+----------------+
+| Field   | Type        | Null | Key | Default | Extra          |
++---------+-------------+------+-----+---------+----------------+
+| s_id    | int         | NO   | PRI | NULL    | auto_increment |
+| s_name  | varchar(40) | YES  |     | NULL    |                |
+| address | varchar(40) | YES  |     | NULL    |                |
+| age     | int         | YES  |     | NULL    |                |
+| email   | varchar(60) | YES  |     | NULL    |                |
+| marks   | int         | YES  |     | NULL    |                |
++---------+-------------+------+-----+---------+----------------+
+6 rows in set (0.00 sec)
+
+mysql> alter table student drop marks;
+Query OK, 0 rows affected (0.18 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc student;
++---------+-------------+------+-----+---------+----------------+
+| Field   | Type        | Null | Key | Default | Extra          |
++---------+-------------+------+-----+---------+----------------+
+| s_id    | int         | NO   | PRI | NULL    | auto_increment |
+| s_name  | varchar(40) | YES  |     | NULL    |                |
+| address | varchar(40) | YES  |     | NULL    |                |
+| age     | int         | YES  |     | NULL    |                |
+| email   | varchar(60) | YES  |     | NULL    |                |
++---------+-------------+------+-----+---------+----------------+
+5 rows in set (0.00 sec)
+
+mysql> alter table student add subject int;
+Query OK, 0 rows affected (0.05 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc student;
++---------+-------------+------+-----+---------+----------------+
+| Field   | Type        | Null | Key | Default | Extra          |
++---------+-------------+------+-----+---------+----------------+
+| s_id    | int         | NO   | PRI | NULL    | auto_increment |
+| s_name  | varchar(40) | YES  |     | NULL    |                |
+| address | varchar(40) | YES  |     | NULL    |                |
+| age     | int         | YES  |     | NULL    |                |
+| email   | varchar(60) | YES  |     | NULL    |                |
+| subject | int         | YES  |     | NULL    |                |
++---------+-------------+------+-----+---------+----------------+
+6 rows in set (0.00 sec)
+
+mysql> alter table student modify subject varchar(50);
+Query OK, 4 rows affected (0.21 sec)
+Records: 4  Duplicates: 0  Warnings: 0
+
+mysql> desc student;
++---------+-------------+------+-----+---------+----------------+
+| Field   | Type        | Null | Key | Default | Extra          |
++---------+-------------+------+-----+---------+----------------+
+| s_id    | int         | NO   | PRI | NULL    | auto_increment |
+| s_name  | varchar(40) | YES  |     | NULL    |                |
+| address | varchar(40) | YES  |     | NULL    |                |
+| age     | int         | YES  |     | NULL    |                |
+| email   | varchar(60) | YES  |     | NULL    |                |
+| subject | varchar(50) | YES  |     | NULL    |                |
++---------+-------------+------+-----+---------+----------------+
+6 rows in set (0.00 sec)
+
+mysql> alter table student modify subject varchar(100) not null default 'history';
+ERROR 1265 (01000): Data truncated for column 'subject' at row 1
+mysql> select * from student;
++------+--------+---------+------+-------+---------+
+| s_id | s_name | address | age  | email | subject |
++------+--------+---------+------+-------+---------+
+|    1 | Shreya | Dewas   |   23 | NULL  | NULL    |
+|    3 | Harini | AP      |   19 | NULL  | NULL    |
+|    8 | Simran | NULL    |   30 | NULL  | NULL    |
+|    9 | Amol   | NULL    |   24 | NULL  | NULL    |
++------+--------+---------+------+-------+---------+
+4 rows in set (0.00 sec)
+
+mysql> alter table student modify subject varchar(100) not null default 'history';
+ERROR 1265 (01000): Data truncated for column 'subject' at row 1
+mysql> alter table student alter subject set default 'sanskrit';
+Query OK, 0 rows affected (0.02 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> select * from student;
++------+--------+---------+------+-------+---------+
+| s_id | s_name | address | age  | email | subject |
++------+--------+---------+------+-------+---------+
+|    1 | Shreya | Dewas   |   23 | NULL  | NULL    |
+|    3 | Harini | AP      |   19 | NULL  | NULL    |
+|    8 | Simran | NULL    |   30 | NULL  | NULL    |
+|    9 | Amol   | NULL    |   24 | NULL  | NULL    |
++------+--------+---------+------+-------+---------+
+4 rows in set (0.00 sec)
+
+mysql> alter table student rename to student_details;
+Query OK, 0 rows affected (0.05 sec)
+
+mysql> select * from student_details;
++------+--------+---------+------+-------+---------+
+| s_id | s_name | address | age  | email | subject |
++------+--------+---------+------+-------+---------+
+|    1 | Shreya | Dewas   |   23 | NULL  | NULL    |
+|    3 | Harini | AP      |   19 | NULL  | NULL    |
+|    8 | Simran | NULL    |   30 | NULL  | NULL    |
+|    9 | Amol   | NULL    |   24 | NULL  | NULL    |
++------+--------+---------+------+-------+---------+
+4 rows in set (0.00 sec)
+
+mysql> alter table student_details rename to student;
+Query OK, 0 rows affected (0.06 sec)
+
+mysql> select * from student;
++------+--------+---------+------+-------+---------+
+| s_id | s_name | address | age  | email | subject |
++------+--------+---------+------+-------+---------+
+|    1 | Shreya | Dewas   |   23 | NULL  | NULL    |
+|    3 | Harini | AP      |   19 | NULL  | NULL    |
+|    8 | Simran | NULL    |   30 | NULL  | NULL    |
+|    9 | Amol   | NULL    |   24 | NULL  | NULL    |
++------+--------+---------+------+-------+---------+
+4 rows in set (0.00 sec)
+
+
+
+
+
+
+mysql> use company;
+Database changed
+
+mysql> use practice;
+Database changed
+mysql> show tables;
++--------------------+
+| Tables_in_practice |
++--------------------+
+| composite          |
+| department         |
+| employee           |
+| student            |
++--------------------+
+4 rows in set (0.00 sec)
+
+mysql> select * from employee;
++-----+--------+--------+-------+
+| eid | ename  | deptid | mgrid |
++-----+--------+--------+-------+
+|   1 | Shreya |     10 |     8 |
+|   2 | simran |     20 |     9 |
+|   3 | Saloni |     30 |    10 |
++-----+--------+--------+-------+
+3 rows in set (0.00 sec)
+
+mysql> select ename, deptid from employee where deptid=10;
++--------+--------+
+| ename  | deptid |
++--------+--------+
+| Shreya |     10 |
++--------+--------+
+1 row in set (0.00 sec)
+
+mysql> select ename, deptid from employee where deptid=10 or deptid=20;
++--------+--------+
+| ename  | deptid |
++--------+--------+
+| Shreya |     10 |
+| simran |     20 |
++--------+--------+
+2 rows in set (0.00 sec)
+
+mysql> select ename,deptid from employee where deptid in(10,20);
++--------+--------+
+| ename  | deptid |
++--------+--------+
+| Shreya |     10 |
+| simran |     20 |
++--------+--------+
+2 rows in set (0.00 sec)
+
+mysql> select ename,deptid from employee where deptid=10 or deptid=20;
++--------+--------+
+| ename  | deptid |
++--------+--------+
+| Shreya |     10 |
+| simran |     20 |
++--------+--------+
+2 rows in set (0.00 sec)
+
+mysql> select ename, deptid,mgrid from employee where mgrid>=8 and mgrid<=10;
++--------+--------+-------+
+| ename  | deptid | mgrid |
++--------+--------+-------+
+| Shreya |     10 |     8 |
+| simran |     20 |     9 |
+| Saloni |     30 |    10 |
++--------+--------+-------+
+3 rows in set (0.00 sec)
+
+mysql> select ename,deptid,mgrid from employee where mgrid between 8 and 10;
++--------+--------+-------+
+| ename  | deptid | mgrid |
++--------+--------+-------+
+| Shreya |     10 |     8 |
+| simran |     20 |     9 |
+| Saloni |     30 |    10 |
++--------+--------+-------+
+3 rows in set (0.00 sec)
+
+mysql> select ename from employee;
++--------+
+| ename  |
++--------+
+| Shreya |
+| simran |
+| Saloni |
++--------+
+3 rows in set (0.00 sec)
+
+ 
+mysql> select ename from employee where ename like '_i%';
++--------+
+| ename  |
++--------+
+| simran |
++--------+
+1 row in set (0.00 sec)
+
+
+
+
+
+
+mysql> select * from student;
++------+--------+---------+------+-------+---------+
+| s_id | s_name | address | age  | email | subject |
++------+--------+---------+------+-------+---------+
+|    1 | Shreya | Dewas   |   23 | NULL  | NULL    |
+|    3 | Harini | AP      |   19 | NULL  | NULL    |
+|    8 | Simran | NULL    |   30 | NULL  | NULL    |
+|    9 | Amol   | NULL    |   24 | NULL  | NULL    |
++------+--------+---------+------+-------+---------+
+4 rows in set (0.00 sec)
+
+mysql> select s_name from student where email is null;
++--------+
+| s_name |
++--------+
+| Shreya |
+| Harini |
+| Simran |
+| Amol   |
++--------+
+4 rows in set (0.00 sec)
+
+
+
+
+
+mysql> select s_name,age from student order by age;
++--------+------+
+| s_name | age  |
++--------+------+
+| Harini |   19 |
+| Shreya |   23 |
+| Amol   |   24 |
+| Simran |   30 |
++--------+------+
+4 rows in set (0.00 sec)
+
+mysql> select s_name,age from student order by age desc;
++--------+------+
+| s_name | age  |
++--------+------+
+| Simran |   30 |
+| Amol   |   24 |
+| Shreya |   23 |
+| Harini |   19 |
++--------+------+
+4 rows in set (0.00 sec)
+
+mysql> select * from employee;
++-----+--------+--------+-------+
+| eid | ename  | deptid | mgrid |
++-----+--------+--------+-------+
+|   1 | Shreya |     10 |     8 |
+|   2 | simran |     20 |     9 |
+|   3 | Saloni |     30 |    10 |
++-----+--------+--------+-------+
+3 rows in set (0.00 sec)
+
+mysql> select ename,deptid,mgrid from employee order by deptid,mgrid;
++--------+--------+-------+
+| ename  | deptid | mgrid |
++--------+--------+-------+
+| Shreya |     10 |     8 |
+| simran |     20 |     9 |
+| Saloni |     30 |    10 |
++--------+--------+-------+
+3 rows in set (0.00 sec)
+
+
+
+
+
+
+
+mysql> select ename,deptid from employee limit 3;
++--------+--------+
+| ename  | deptid |
++--------+--------+
+| Shreya |     10 |
+| simran |     20 |
+| Saloni |     30 |
++--------+--------+
+3 rows in set (0.00 sec)
+
+mysql> select ename,deptid from employee limit 2;
++--------+--------+
+| ename  | deptid |
++--------+--------+
+| Shreya |     10 |
+| simran |     20 |
++--------+--------+
+2 rows in set (0.00 sec)
+
+
+
+
+
+
+
+mysql> set @number=10;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> select case(@number%2)
+    -> when 0 then 'even'
+    -> when 1 then 'odd'
+    -> end;
++----------------------------------------------------------+
+| case(@number%2)
+when 0 then 'even'
+when 1 then 'odd'
+end |
++----------------------------------------------------------+
+| even                                                     |
++----------------------------------------------------------+
+1 row in set (0.00 sec)
+
+
+
+
+
+
+
+
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| company            |
+| information_schema |
+| mysql              |
+| performance_schema |
+| practice           |
+| student            |
+| sys                |
++--------------------+
+7 rows in set (0.00 sec)
+
+
+mysql> use practice;
+Database changed
+mysql> show tables;
++--------------------+
+| Tables_in_practice |
++--------------------+
+| composite          |
+| department         |
+| employee           |
+| student            |
++--------------------+
+4 rows in set (0.00 sec)
+
+mysql> select * from student;
++------+--------+---------+------+-------+---------+
+| s_id | s_name | address | age  | email | subject |
++------+--------+---------+------+-------+---------+
+|    1 | Shreya | Dewas   |   23 | NULL  | NULL    |
+|    3 | Harini | AP      |   19 | NULL  | NULL    |
+|    8 | Simran | NULL    |   30 | NULL  | NULL    |
+|    9 | Amol   | NULL    |   24 | NULL  | NULL    |
++------+--------+---------+------+-------+---------+
+4 rows in set (0.00 sec)
+
+mysql> select length('vishal');
++------------------+
+| length('vishal') |
++------------------+
+|                6 |
++------------------+
+1 row in set (0.00 sec)
+
+
+mysql> select s_name , length(s_name) from student;
++--------+----------------+
+| s_name | length(s_name) |
++--------+----------------+
+| Shreya |              6 |
+| Harini |              6 |
+| Simran |              6 |
+| Amol   |              4 |
++--------+----------------+
+4 rows in set (0.00 sec)
+
+mysql> select upper('amit');
++---------------+
+| upper('amit') |
++---------------+
+| AMIT          |
++---------------+
+1 row in set (0.00 sec)
+
+mysql> select upper(s_name) from student;
++---------------+
+| upper(s_name) |
++---------------+
+| SHREYA        |
+| HARINI        |
+| SIMRAN        |
+| AMOL          |
++---------------+
+4 rows in set (0.00 sec)
+
+mysql> select substring('nikhil',2 ,4);
++--------------------------+
+| substring('nikhil',2 ,4) |
++--------------------------+
+| ikhi                     |
++--------------------------+
+1 row in set (0.00 sec)
+
+mysql> select instr('nikhil','k');
++---------------------+
+| instr('nikhil','k') |
++---------------------+
+|                   3 |
++---------------------+
+1 row in set (0.00 sec)
+
+mysql> select concat('nikhil','shrivastava');
++--------------------------------+
+| concat('nikhil','shrivastava') |
++--------------------------------+
+| nikhilshrivastava              |
++--------------------------------+
+1 row in set (0.00 sec)
+
+mysql> create table names( first varchar(40),last varchar(40));
+Query OK, 0 rows affected (0.09 sec)
+
+mysql> insert into names values("shreya","kalluraya");
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into names values("Krati","Tare");
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from names;
++--------+-----------+
+| first  | last      |
++--------+-----------+
+| shreya | kalluraya |
+| Krati  | Tare      |
++--------+-----------+
+2 rows in set (0.00 sec)
+
+mysql> select first,last,concat(first,last) from names;
++--------+-----------+--------------------+
+| first  | last      | concat(first,last) |
++--------+-----------+--------------------+
+| shreya | kalluraya | shreyakalluraya    |
+| Krati  | Tare      | KratiTare          |
++--------+-----------+--------------------+
+2 rows in set (0.00 sec)
+
+mysql> select first,last ,concat(first," ",last) as fulname from names;
++--------+-----------+------------------+
+| first  | last      | fulname          |
++--------+-----------+------------------+
+| shreya | kalluraya | shreya kalluraya |
+| Krati  | Tare      | Krati Tare       |
++--------+-----------+------------------+
+2 rows in set (0.00 sec)
+
+mysql> select ename,concat(upper(substring(ename,1,1)),substring(ename,2,length(ename))) as initcap from employee;
++--------+---------+
+| ename  | initcap |
++--------+---------+
+| Shreya | Shreya  |
+| simran | Simran  |
+| Saloni | Saloni  |
++--------+---------+
+3 rows in set (0.00 sec)
+
+mysql> select ename,case(length(ename)%2)
+    -> when 0 then substring(ename,length(ename)/2,2)
+    -> when 1 then substring(ename,length(ename)/2,1)
+    -> end as midalfa
+    -> from employee;
++--------+---------+
+| ename  | midalfa |
++--------+---------+
+| Shreya | re      |
+| simran | mr      |
+| Saloni | lo      |
++--------+---------+
+3 rows in set (0.00 sec)
+
+
+mysql> select '       krishna';
++----------------+
+| krishna        |
++----------------+
+|        krishna |
++----------------+
+1 row in set (0.00 sec)
+
+mysql> select ltrim('    krishna');
++----------------------+
+| ltrim('    krishna') |
++----------------------+
+| krishna              |
++----------------------+
+1 row in set (0.00 sec)
+
+mysql> select repeat("*",5);
++---------------+
+| repeat("*",5) |
++---------------+
+| *****         |
++---------------+
+1 row in set (0.00 sec)
+
+
+mysql> insert into names(first) values('       Krishna'),('     Aman'),('            Sibi');
+Query OK, 3 rows affected (0.01 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql> select * from names;
++------------------+-----------+
+| first            | last      |
++------------------+-----------+
+| shreya           | kalluraya |
+| Krati            | Tare      |
+|        Krishna   | NULL      |
+|      Aman        | NULL      |
+|             Sibi | NULL      |
++------------------+-----------+
+5 rows in set (0.00 sec)
+
+mysql> select first,repeat('*',length(first)-length(ltrim(first))) from names;
++------------------+------------------------------------------------+
+| first            | repeat('*',length(first)-length(ltrim(first))) |
++------------------+------------------------------------------------+
+| shreya           |                                                |
+| Krati            |                                                |
+|        Krishna   | *******                                        |
+|      Aman        | *****                                          |
+|             Sibi | ************                                   |
++------------------+------------------------------------------------+
+5 rows in set (0.00 sec)
+
+mysql> select first,concat(repeat('*',length(first)-length(ltrim(first))),ltrim(first)) from names;
++------------------+---------------------------------------------------------------------+
+| first            | concat(repeat('*',length(first)-length(ltrim(first))),ltrim(first)) |
++------------------+---------------------------------------------------------------------+
+| shreya           | shreya                                                              |
+| Krati            | Krati                                                               |
+|        Krishna   | *******Krishna                                                      |
+|      Aman        | *****Aman                                                           |
+|             Sibi | ************Sibi                                                    |
++------------------+---------------------------------------------------------------------+
+5 rows in set (0.00 sec)
+
+mysql> select replace('amit','a','v');
++-------------------------+
+| replace('amit','a','v') |
++-------------------------+
+| vmit                    |
++-------------------------+
+1 row in set (0.00 sec)
+
+mysql> select first,replace(first,' ','*') from names;
++------------------+------------------------+
+| first            | replace(first,' ','*') |
++------------------+------------------------+
+| shreya           | shreya                 |
+| Krati            | Krati                  |
+|        Krishna   | *******Krishna         |
+|      Aman        | *****Aman              |
+|             Sibi | ************Sibi       |
++------------------+------------------------+
+5 rows in set (0.00 sec)
+
+mysql> create table test(aadhar int not null);
+Query OK, 0 rows affected (0.08 sec)
+
+mysql> insert into test(aadhar) values(123456789),(987654321),(234567890),(098765432);
+Query OK, 4 rows affected (0.01 sec)
+Records: 4  Duplicates: 0  Warnings: 0
+
+mysql> select * from test;
++-----------+
+| aadhar    |
++-----------+
+| 123456789 |
+| 987654321 |
+| 234567890 |
+|  98765432 |
++-----------+
+4 rows in set (0.00 sec)
+
+
+mysql> select  aadhar,concat(repeat('X',length(aadhar)-4),substring(aadhar,length(aadhar)-4+1)) as masked from test;
++-----------+-----------+
+| aadhar    | masked    |
++-----------+-----------+
+| 123456789 | XXXXX6789 |
+| 987654321 | XXXXX4321 |
+| 234567890 | XXXXX7890 |
+|  98765432 | XXXX5432  |
++-----------+-----------+
+4 rows in set (0.00 sec)
+
+
+
+
+
+
+
+
+mysql> select timestampdiff(month, '2014-04-13' , '2014-09-23');
++---------------------------------------------------+
+| timestampdiff(month, '2014-04-13' , '2014-09-23') |
++---------------------------------------------------+
+|                                                 5 |
++---------------------------------------------------+
+1 row in set (0.00 sec)
+
+mysql>  select timestampdiff(day, '2014-04-13' , '2014-09-23');
++-------------------------------------------------+
+| timestampdiff(day, '2014-04-13' , '2014-09-23') |
++-------------------------------------------------+
+|                                             163 |
++-------------------------------------------------+
+1 row in set (0.00 sec)
+
+mysql> show tables;
++--------------------+
+| Tables_in_practice |
++--------------------+
+| composite          |
+| department         |
+| employee           |
+| names              |
+| student            |
+| test               |
++--------------------+
+6 rows in set (0.00 sec)
+
+mysql> select * from employee;
++-----+--------+--------+-------+
+| eid | ename  | deptid | mgrid |
++-----+--------+--------+-------+
+|   1 | Shreya |     10 |     8 |
+|   2 | simran |     20 |     9 |
+|   3 | Saloni |     30 |    10 |
++-----+--------+--------+-------+
+3 rows in set (0.00 sec)
+
+mysql> select ename,salary,hiredate,timestampdiff(year,hiredate,currdate()) as yearworked from employee;
+ERROR 1054 (42S22): Unknown column 'salary' in 'field list'
+
+ERROR 1305 (42000): FUNCTION practice.currdate does not exist
+mysql> select quarter(curdate());
++--------------------+
+| quarter(curdate()) |
++--------------------+
+|                  1 |
++--------------------+
+1 row in set (0.00 sec)
+
+mysql> select ename,hiredate,case select timestampdiff(month, '2014-04-13' , '2014-09-23');
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'select timestampdiff(month, '2014-04-13' , '2014-09-23')' at line 1
+mysql> select ename,hiredate,case
+    -> when quarter(hiredate)=1 then '1stQuarter'
+    -> when quarter(hiredate)=2 then '2ndQuarter'
+    -> when quarter(hiredate)=3 then '3rdQuarter'
+    -> when quarter(hiredate)=4 then '4thQuarter'
+    -> end as hiredQuarter
+    -> from employee;
+ERROR 1054 (42S22): Unknown column 'hiredate' in 'field list'
+mysql> select curdate();
++------------+
+| curdate()  |
++------------+
+| 2023-01-21 |
++------------+
+1 row in set (0.00 sec)
+
+mysql> select dayname(curdate());
++--------------------+
+| dayname(curdate()) |
++--------------------+
+| Saturday           |
++--------------------+
+1 row in set (0.00 sec)
+
+
+mysql>  select case(dayname(curdate()))
+    -> when 'Sunday' then 'weekend'
+    -> when 'Saturday' then 'weekend'
+    ->  else 'weekday'
+    -> end as dow;
++---------+
+| dow     |
++---------+
+| weekend |
++---------+
+1 row in set (0.00 sec)
+
+mysql> select ename from employee where extract(month from hiredate)=(select extract(month from hiredate) from employee where ename='jayant');
+ERROR 1054 (42S22): Unknown column 'hiredate' in 'where clause'
+mysql> select STR_TO_DATE('04/31/2004','%m%d%y');
++------------------------------------+
+| STR_TO_DATE('04/31/2004','%m%d%y') |
++------------------------------------+
+| NULL                               |
++------------------------------------+
+1 row in set, 1 warning (0.00 sec)
+
+mysql> select STR_TO_DATE('04/31/2004','%n/%d/%y');
++--------------------------------------+
+| STR_TO_DATE('04/31/2004','%n/%d/%y') |
++--------------------------------------+
+| NULL                                 |
++--------------------------------------+
+1 row in set, 1 warning (0.00 sec)
+
+
+
+
+
+
+
+ysql> select last from names where last is null;
++------+
+| last |
++------+
+| NULL |
+| NULL |
+| NULL |
++------+
+3 rows in set (0.00 sec)
+
+ 
+mysql> select first,last from names where last is null;
++------------------+------+
+| first            | last |
++------------------+------+
+|        Krishna   | NULL |
+|      Aman        | NULL |
+|             Sibi | NULL |
++------------------+------+
+3 rows in set (0.00 sec)
+
+mysql> select ifnull(3,4);
++-------------+
+| ifnull(3,4) |
++-------------+
+|           3 |
++-------------+
+1 row in set (0.00 sec)
+
+mysql> select ifnull(0,8);
++-------------+
+| ifnull(0,8) |
++-------------+
+|           0 |
++-------------+
+1 row in set (0.00 sec)
+
+
+mysql> select ifnull(null,6);
++----------------+
+| ifnull(null,6) |
++----------------+
+|              6 |
++----------------+
+1 row in set (0.00 sec)
+
+mysql> select ename,salary,commision,salary+ifnull(comisiion,0) as effectivesal from employee;
+ERROR 1054 (42S22): Unknown column 'salary' in 'field list'
+mysql> select ename,salary,commision,salary+ifnull(comisiion,0) as effectivesal,if(commision is null,'sal','sal+com') from employee;
+ERROR 1054 (42S22): Unknown column 'salary' in 'field list'
+mysql>
+
+
+
+
+
+
+mysql> select count(*) from employee;
++----------+
+| count(*) |
++----------+
+|        3 |
++----------+
+1 row in set (0.01 sec)
+
+mysql> select * from employee;
++-----+--------+--------+-------+
+| eid | ename  | deptid | mgrid |
++-----+--------+--------+-------+
+|   1 | Shreya |     10 |     8 |
+|   2 | simran |     20 |     9 |
+|   3 | Saloni |     30 |    10 |
++-----+--------+--------+-------+
+3 rows in set (0.00 sec)
+
+mysql> select sum(mgrid) from employee;
++------------+
+| sum(mgrid) |
++------------+
+|         27 |
++------------+
+1 row in set (0.00 sec)
+
+mysql> select min(mgrid) from employee;
++------------+
+| min(mgrid) |
++------------+
+|          8 |
++------------+
+1 row in set (0.00 sec)
+
+mysql> select max(mgrid) from employee;
++------------+
+| max(mgrid) |
++------------+
+|         10 |
++------------+
+1 row in set (0.00 sec)
+
+mysql> select avg(mgrid) from employee;
++------------+
+| avg(mgrid) |
++------------+
+|     9.0000 |
++------------+
+1 row in set (0.00 sec)
+
+mysql> select count(*) from employee where deptid between 10 and 21;
++----------+
+| count(*) |
++----------+
+|        2 |
++----------+
+1 row in set (0.00 sec)
+
+mysql> select sum(deptid) from employee;
++-------------+
+| sum(deptid) |
++-------------+
+|          60 |
++-------------+
+1 row in set (0.00 sec)
+
+
+mysql> select * from names;
++------------------+-----------+
+| first            | last      |
++------------------+-----------+
+| shreya           | kalluraya |
+| Krati            | Tare      |
+|        Krishna   | NULL      |
+|      Aman        | NULL      |
+|             Sibi | NULL      |
++------------------+-----------+
+5 rows in set (0.00 sec)
+
+
+
+mysql> select count(*) from names where last is null;
++----------+
+| count(*) |
++----------+
+|        3 |
++----------+
+1 row in set (0.00 sec)
+
+mysql> select ename,hiredate,extract(year from hiredate) as yearhired from employee;
+ERROR 1054 (42S22): Unknown column 'hiredate' in 'field list'
+mysql> select count(*) from employee where extract(year from hiredate)=2017;
+ERROR 1054 (42S22): Unknown column 'hiredate' in 'where clause'
+mysql> select sum(commision) from employee where timestampdiff(year,hiredate,curdate())>=1;
+ERROR 1054 (42S22): Unknown column 'commision' in 'field list'
+mysql> select count(distinct deptid,mgrid) from employee;
++------------------------------+
+| count(distinct deptid,mgrid) |
++------------------------------+
+|                            3 |
++------------------------------+
+1 row in set (0.01 sec)
+
+mysql> select sum(case(gender) when 'm' then 1 else 0 end) as males
+    -> sum(case(gender) when 'f' then 1 else 0 end ) as females
+    -> from employee;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'sum(case(gender) when 'f' then 1 else 0 end ) as females
+from employee' at line 2
+mysql> select sum(case(extract(year from hiredate)) when 2017 then 1 else 0 end) as 2017 from employee;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '2017 from employee' at line 1
+
+
+
+
+
+
+
+RROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'sum(case(gender) when 'f' then 1 else 0 end ) as females
+from employee' at line 2
+mysql> select sum(case(extract(year from hiredate)) when 2017 then 1 else 0 end) as 2017 from employee;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '2017 from employee' at line 1
+mysql> select count(*) from employee where deptid=10;
++----------+
+| count(*) |
++----------+
+|        1 |
++----------+
+1 row in set (0.00 sec)
+
+mysql> select count(*) ,deptid from employee group by deptid;
++----------+--------+
+| count(*) | deptid |
++----------+--------+
+|        1 |     10 |
+|        1 |     20 |
+|        1 |     30 |
++----------+--------+
+3 rows in set (0.00 sec)
+
+mysql> select deptid,count(*) as numemployee from employee group by deptid;
++--------+-------------+
+| deptid | numemployee |
++--------+-------------+
+|     10 |           1 |
+|     20 |           1 |
+|     30 |           1 |
++--------+-------------+
+3 rows in set (0.00 sec)
+
+mysql> select deptid , count(*) from employee where count(*)>2 group by deptid;
+ERROR 1111 (HY000): Invalid use of group function
+mysql> select deptid,count(*) from employee group by deptid having count(*)>2;
+Empty set (0.00 sec)
+
+mysql> create table movie(name varchar(20) primary key, director varchar(30));
+Query OK, 0 rows affected (0.08 sec)
+
+mysql> desc movie;
++----------+-------------+------+-----+---------+-------+
+| Field    | Type        | Null | Key | Default | Extra |
++----------+-------------+------+-----+---------+-------+
+| name     | varchar(20) | NO   | PRI | NULL    |       |
+| director | varchar(30) | YES  |     | NULL    |       |
++----------+-------------+------+-----+---------+-------+
+2 rows in set (0.00 sec)
+
+
+
+
+
+
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| assignment         |
+| company            |
+| information_schema |
+| mysql              |
+| performance_schema |
+| practice           |
+| record             |
+| student            |
+| sys                |
++--------------------+
+9 rows in set (0.00 sec)
+
+mysql> use practice;
+Database changed
+mysql> show tables;
++--------------------+
+| Tables_in_practice |
++--------------------+
+| composite          |
+| department         |
+| dept               |
+| employee           |
+| movie              |
+| names              |
+| student            |
+| test               |
++--------------------+
+8 rows in set (0.00 sec)
+
+mysql> desc employee;
++--------+-------------+------+-----+---------+-------+
+| Field  | Type        | Null | Key | Default | Extra |
++--------+-------------+------+-----+---------+-------+
+| eid    | int         | NO   | PRI | NULL    |       |
+| ename  | varchar(40) | YES  |     | NULL    |       |
+| deptid | int         | YES  |     | NULL    |       |
+| mgrid  | int         | YES  |     | NULL    |       |
++--------+-------------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+
+mysql> desc department;
++--------+-------------+------+-----+---------+-------+
+| Field  | Type        | Null | Key | Default | Extra |
++--------+-------------+------+-----+---------+-------+
+| deptid | int         | NO   | PRI | NULL    |       |
+| dname  | varchar(40) | YES  |     | NULL    |       |
+| city   | varchar(40) | YES  |     | NULL    |       |
++--------+-------------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+
+mysql> alter table employee add constraint emp_dept_deptid_fk foreign key(deptid) references department(deptid);
+Query OK, 3 rows affected (0.21 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql> desc employee;
++--------+-------------+------+-----+---------+-------+
+| Field  | Type        | Null | Key | Default | Extra |
++--------+-------------+------+-----+---------+-------+
+| eid    | int         | NO   | PRI | NULL    |       |
+| ename  | varchar(40) | YES  |     | NULL    |       |
+| deptid | int         | YES  | MUL | NULL    |       |
+| mgrid  | int         | YES  |     | NULL    |       |
++--------+-------------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+
+mysql> select * from employee;
++-----+--------+--------+-------+
+| eid | ename  | deptid | mgrid |
++-----+--------+--------+-------+
+|   1 | Shreya |     10 |     8 |
+|   2 | simran |     20 |     9 |
+|   3 | Saloni |     30 |    10 |
++-----+--------+--------+-------+
+3 rows in set (0.00 sec)
+
+mysql> select * from department;
++--------+-------+---------+
+| deptid | dname | city    |
++--------+-------+---------+
+|     10 | IT    | mumbai  |
+|     20 | Sales | chennai |
+|     30 | HR    | pune    |
++--------+-------+---------+
+3 rows in set (0.00 sec)
+
+mysql> insert into employee values(4,"Rahul",40,10);
+ERROR 1452 (23000): Cannot add or update a child row: a foreign key constraint fails (`practice`.`employee`, CONSTRAINT `emp_dept_deptid_fk` FOREIGN KEY (`deptid`) REFERENCES `department` (`deptid`))
+mysql> insert into department values(40,"Manager","Indore");
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into employee values(4,"Rahul",40,10);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> delete from department where dname ='Sales';
+ERROR 1451 (23000): Cannot delete or update a parent row: a foreign key constraint fails (`practice`.`employee`, CONSTRAINT `emp_dept_deptid_fk` FOREIGN KEY (`deptid`) REFERENCES `department` (`deptid`))
+mysql> create table emp(eid int primary key,ename varchar(20),deptid int , foreign key(deptid) references department(deptid));
+Query OK, 0 rows affected (0.10 sec)
+
+mysql> desc emp;
++--------+-------------+------+-----+---------+-------+
+| Field  | Type        | Null | Key | Default | Extra |
++--------+-------------+------+-----+---------+-------+
+| eid    | int         | NO   | PRI | NULL    |       |
+| ename  | varchar(20) | YES  |     | NULL    |       |
+| deptid | int         | YES  | MUL | NULL    |       |
++--------+-------------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> alter table emp drop foreign key deptid;
+ERROR 1091 (42000): Can't DROP 'deptid'; check that column/key exists
+mysql> show create table emp;
++-------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Table | Create Table                                                                                                                                                                                                                                                                                                         |
++-------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| emp   | CREATE TABLE `emp` (
+  `eid` int NOT NULL,
+  `ename` varchar(20) DEFAULT NULL,
+  `deptid` int DEFAULT NULL,
+  PRIMARY KEY (`eid`),
+  KEY `deptid` (`deptid`),
+  CONSTRAINT `emp_ibfk_1` FOREIGN KEY (`deptid`) REFERENCES `department` (`deptid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci |
++-------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+1 row in set (0.00 sec)
+
+mysql> alter table emp drop foreign key deptid;
+ERROR 1091 (42000): Can't DROP 'deptid'; check that column/key exists
+mysql> desc emp;
++--------+-------------+------+-----+---------+-------+
+| Field  | Type        | Null | Key | Default | Extra |
++--------+-------------+------+-----+---------+-------+
+| eid    | int         | NO   | PRI | NULL    |       |
+| ename  | varchar(20) | YES  |     | NULL    |       |
+| deptid | int         | YES  | MUL | NULL    |       |
++--------+-------------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> alter table emp drop foreign key deptis;
+ERROR 1091 (42000): Can't DROP 'deptis'; check that column/key exists
+mysql> alter table emp drop foreign key(deptid);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '(deptid)' at line 1
+mysql> update department set deptid=30 where dname='Sales';
+ERROR 1451 (23000): Cannot delete or update a parent row: a foreign key constraint fails (`practice`.`employee`, CONSTRAINT `emp_dept_deptid_fk` FOREIGN KEY (`deptid`) REFERENCES `department` (`deptid`))
+mysql> select * from employee;
++-----+--------+--------+-------+
+| eid | ename  | deptid | mgrid |
++-----+--------+--------+-------+
+|   1 | Shreya |     10 |     8 |
+|   2 | simran |     20 |     9 |
+|   3 | Saloni |     30 |    10 |
+|   4 | Rahul  |     40 |    10 |
++-----+--------+--------+-------+
+4 rows in set (0.00 sec)
+
+mysql> insert into employee values(5,"Sonal",20,2);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from employee;
++-----+--------+--------+-------+
+| eid | ename  | deptid | mgrid |
++-----+--------+--------+-------+
+|   1 | Shreya |     10 |     8 |
+|   2 | simran |     20 |     9 |
+|   3 | Saloni |     30 |    10 |
+|   4 | Rahul  |     40 |    10 |
+|   5 | Sonal  |     20 |     2 |
++-----+--------+--------+-------+
+5 rows in set (0.00 sec)
+
+mysql> alter table emp add constraint foreign key(mgrid) references employee(eid);
+ERROR 1072 (42000): Key column 'mgrid' doesn't exist in table
+mysql> alter table employee add constraint foreign key(mgrid) references employee(eid);
+ERROR 1452 (23000): Cannot add or update a child row: a foreign key constraint fails (`practice`.`#sql-1194_1e`, CONSTRAINT `employee_ibfk_1` FOREIGN KEY (`mgrid`) REFERENCES `employee` (`eid`))
+mysql> alter table employee add constraint foreign key(mgrid) references employee(eid);
+ERROR 1452 (23000): Cannot add or update a child row: a foreign key constraint fails (`practice`.`#sql-1194_1e`, CONSTRAINT `employee_ibfk_1` FOREIGN KEY (`mgrid`) REFERENCES `employee` (`eid`))
+mysql> desc employe;
+ERROR 1146 (42S02): Table 'practice.employe' doesn't exist
+mysql> desc employee;
++--------+-------------+------+-----+---------+-------+
+| Field  | Type        | Null | Key | Default | Extra |
++--------+-------------+------+-----+---------+-------+
+| eid    | int         | NO   | PRI | NULL    |       |
+| ename  | varchar(40) | YES  |     | NULL    |       |
+| deptid | int         | YES  | MUL | NULL    |       |
+| mgrid  | int         | YES  |     | NULL    |       |
++--------+-------------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+
+mysql> alter table employee add constraint foreign key(mgrid) references employee(eid);
+ERROR 1452 (23000): Cannot add or update a child row: a foreign key constraint fails (`practice`.`#sql-1194_1e`, CONSTRAINT `employee_ibfk_1` FOREIGN KEY (`mgrid`) REFERENCES `employee` (`eid`))
+
+
+
+
+
+
+
+mysql> desc employee;
++--------+-------------+------+-----+---------+-------+
+| Field  | Type        | Null | Key | Default | Extra |
++--------+-------------+------+-----+---------+-------+
+| eid    | int         | NO   | PRI | NULL    |       |
+| ename  | varchar(40) | YES  |     | NULL    |       |
+| deptid | int         | YES  | MUL | NULL    |       |
+| mgrid  | int         | YES  |     | NULL    |       |
++--------+-------------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+
+mysql> desc department;
++--------+-------------+------+-----+---------+-------+
+| Field  | Type        | Null | Key | Default | Extra |
++--------+-------------+------+-----+---------+-------+
+| deptid | int         | NO   | PRI | NULL    |       |
+| dname  | varchar(40) | YES  |     | NULL    |       |
+| city   | varchar(40) | YES  |     | NULL    |       |
++--------+-------------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> select * from employee;
++-----+--------+--------+-------+
+| eid | ename  | deptid | mgrid |
++-----+--------+--------+-------+
+|   1 | Shreya |     10 |     8 |
+|   2 | simran |     20 |     9 |
+|   3 | Saloni |     30 |    10 |
+|   4 | Rahul  |     40 |    10 |
+|   5 | Sonal  |     20 |     2 |
++-----+--------+--------+-------+
+5 rows in set (0.00 sec)
+
+mysql> select * from department;
++--------+---------+---------+
+| deptid | dname   | city    |
++--------+---------+---------+
+|     10 | IT      | mumbai  |
+|     20 | Sales   | chennai |
+|     30 | HR      | pune    |
+|     40 | Manager | Indore  |
++--------+---------+---------+
+4 rows in set (0.00 sec)
+
+mysql> select * from employee,department;
++-----+--------+--------+-------+--------+---------+---------+
+| eid | ename  | deptid | mgrid | deptid | dname   | city    |
++-----+--------+--------+-------+--------+---------+---------+
+|   1 | Shreya |     10 |     8 |     40 | Manager | Indore  |
+|   1 | Shreya |     10 |     8 |     30 | HR      | pune    |
+|   1 | Shreya |     10 |     8 |     20 | Sales   | chennai |
+|   1 | Shreya |     10 |     8 |     10 | IT      | mumbai  |
+|   2 | simran |     20 |     9 |     40 | Manager | Indore  |
+|   2 | simran |     20 |     9 |     30 | HR      | pune    |
+|   2 | simran |     20 |     9 |     20 | Sales   | chennai |
+|   2 | simran |     20 |     9 |     10 | IT      | mumbai  |
+|   3 | Saloni |     30 |    10 |     40 | Manager | Indore  |
+|   3 | Saloni |     30 |    10 |     30 | HR      | pune    |
+|   3 | Saloni |     30 |    10 |     20 | Sales   | chennai |
+|   3 | Saloni |     30 |    10 |     10 | IT      | mumbai  |
+|   4 | Rahul  |     40 |    10 |     40 | Manager | Indore  |
+|   4 | Rahul  |     40 |    10 |     30 | HR      | pune    |
+|   4 | Rahul  |     40 |    10 |     20 | Sales   | chennai |
+|   4 | Rahul  |     40 |    10 |     10 | IT      | mumbai  |
+|   5 | Sonal  |     20 |     2 |     40 | Manager | Indore  |
+|   5 | Sonal  |     20 |     2 |     30 | HR      | pune    |
+|   5 | Sonal  |     20 |     2 |     20 | Sales   | chennai |
+|   5 | Sonal  |     20 |     2 |     10 | IT      | mumbai  |
++-----+--------+--------+-------+--------+---------+---------+
+20 rows in set (0.00 sec)
+
+mysql> select * from employee cross join department;
++-----+--------+--------+-------+--------+---------+---------+
+| eid | ename  | deptid | mgrid | deptid | dname   | city    |
++-----+--------+--------+-------+--------+---------+---------+
+|   1 | Shreya |     10 |     8 |     40 | Manager | Indore  |
+|   1 | Shreya |     10 |     8 |     30 | HR      | pune    |
+|   1 | Shreya |     10 |     8 |     20 | Sales   | chennai |
+|   1 | Shreya |     10 |     8 |     10 | IT      | mumbai  |
+|   2 | simran |     20 |     9 |     40 | Manager | Indore  |
+|   2 | simran |     20 |     9 |     30 | HR      | pune    |
+|   2 | simran |     20 |     9 |     20 | Sales   | chennai |
+|   2 | simran |     20 |     9 |     10 | IT      | mumbai  |
+|   3 | Saloni |     30 |    10 |     40 | Manager | Indore  |
+|   3 | Saloni |     30 |    10 |     30 | HR      | pune    |
+|   3 | Saloni |     30 |    10 |     20 | Sales   | chennai |
+|   3 | Saloni |     30 |    10 |     10 | IT      | mumbai  |
+|   4 | Rahul  |     40 |    10 |     40 | Manager | Indore  |
+|   4 | Rahul  |     40 |    10 |     30 | HR      | pune    |
+|   4 | Rahul  |     40 |    10 |     20 | Sales   | chennai |
+|   4 | Rahul  |     40 |    10 |     10 | IT      | mumbai  |
+|   5 | Sonal  |     20 |     2 |     40 | Manager | Indore  |
+|   5 | Sonal  |     20 |     2 |     30 | HR      | pune    |
+|   5 | Sonal  |     20 |     2 |     20 | Sales   | chennai |
+|   5 | Sonal  |     20 |     2 |     10 | IT      | mumbai  |
++-----+--------+--------+-------+--------+---------+---------+
+20 rows in set (0.00 sec)
+
+mysql> select 8 from employee e cross join department d;
++---+
+| 8 |
++---+
+| 8 |
+| 8 |
+| 8 |
+| 8 |
+| 8 |
+| 8 |
+| 8 |
+| 8 |
+| 8 |
+| 8 |
+| 8 |
+| 8 |
+| 8 |
+| 8 |
+| 8 |
+| 8 |
+| 8 |
+| 8 |
+| 8 |
+| 8 |
++---+
+20 rows in set (0.00 sec)
+
+mysql> select * from employee e cross join department d;
++-----+--------+--------+-------+--------+---------+---------+
+| eid | ename  | deptid | mgrid | deptid | dname   | city    |
++-----+--------+--------+-------+--------+---------+---------+
+|   1 | Shreya |     10 |     8 |     40 | Manager | Indore  |
+|   1 | Shreya |     10 |     8 |     30 | HR      | pune    |
+|   1 | Shreya |     10 |     8 |     20 | Sales   | chennai |
+|   1 | Shreya |     10 |     8 |     10 | IT      | mumbai  |
+|   2 | simran |     20 |     9 |     40 | Manager | Indore  |
+|   2 | simran |     20 |     9 |     30 | HR      | pune    |
+|   2 | simran |     20 |     9 |     20 | Sales   | chennai |
+|   2 | simran |     20 |     9 |     10 | IT      | mumbai  |
+|   3 | Saloni |     30 |    10 |     40 | Manager | Indore  |
+|   3 | Saloni |     30 |    10 |     30 | HR      | pune    |
+|   3 | Saloni |     30 |    10 |     20 | Sales   | chennai |
+|   3 | Saloni |     30 |    10 |     10 | IT      | mumbai  |
+|   4 | Rahul  |     40 |    10 |     40 | Manager | Indore  |
+|   4 | Rahul  |     40 |    10 |     30 | HR      | pune    |
+|   4 | Rahul  |     40 |    10 |     20 | Sales   | chennai |
+|   4 | Rahul  |     40 |    10 |     10 | IT      | mumbai  |
+|   5 | Sonal  |     20 |     2 |     40 | Manager | Indore  |
+|   5 | Sonal  |     20 |     2 |     30 | HR      | pune    |
+|   5 | Sonal  |     20 |     2 |     20 | Sales   | chennai |
+|   5 | Sonal  |     20 |     2 |     10 | IT      | mumbai  |
++-----+--------+--------+-------+--------+---------+---------+
+20 rows in set (0.00 sec)
+
+mysql> select e.ename,d.deptid from employee e cross join department d;
++--------+--------+
+| ename  | deptid |
++--------+--------+
+| Shreya |     40 |
+| Shreya |     30 |
+| Shreya |     20 |
+| Shreya |     10 |
+| simran |     40 |
+| simran |     30 |
+| simran |     20 |
+| simran |     10 |
+| Saloni |     40 |
+| Saloni |     30 |
+| Saloni |     20 |
+| Saloni |     10 |
+| Rahul  |     40 |
+| Rahul  |     30 |
+| Rahul  |     20 |
+| Rahul  |     10 |
+| Sonal  |     40 |
+| Sonal  |     30 |
+| Sonal  |     20 |
+| Sonal  |     10 |
++--------+--------+
+20 rows in set (0.00 sec)
+
+mysql> select e.ename , d.dname , d.deptid from employee e cross join department d where e.deptid=d.deptid;
++--------+---------+--------+
+| ename  | dname   | deptid |
++--------+---------+--------+
+| Shreya | IT      |     10 |
+| simran | Sales   |     20 |
+| Sonal  | Sales   |     20 |
+| Saloni | HR      |     30 |
+| Rahul  | Manager |     40 |
++--------+---------+--------+
+5 rows in set (0.00 sec)
+
+mysql> select e.ename , d.dname , d.deptid from employee e inner join department d on e.deptid=d.deptid;
++--------+---------+--------+
+| ename  | dname   | deptid |
++--------+---------+--------+
+| Shreya | IT      |     10 |
+| simran | Sales   |     20 |
+| Sonal  | Sales   |     20 |
+| Saloni | HR      |     30 |
+| Rahul  | Manager |     40 |
++--------+---------+--------+
+5 rows in set (0.00 sec)
+
+mysql> select e.ename,d.location from employee e inner join department d on e.deptid=d.deptid;
+ERROR 1054 (42S22): Unknown column 'd.location' in 'field list'
+mysql> select * from department;
++--------+---------+---------+
+| deptid | dname   | city    |
++--------+---------+---------+
+|     10 | IT      | mumbai  |
+|     20 | Sales   | chennai |
+|     30 | HR      | pune    |
+|     40 | Manager | Indore  |
++--------+---------+---------+
+4 rows in set (0.00 sec)
+
+mysql> select e.ename,d.city from employee e inner join department d on e.deptid=d.deptid;
++--------+---------+
+| ename  | city    |
++--------+---------+
+| Shreya | mumbai  |
+| simran | chennai |
+| Sonal  | chennai |
+| Saloni | pune    |
+| Rahul  | Indore  |
++--------+---------+
+5 rows in set (0.00 sec)
+
+mysql> select e.ename,d.city from employee e inner join department d on e.deptid=d.deptid where location = 'mumbai';
+ERROR 1054 (42S22): Unknown column 'location' in 'where clause'
+mysql> select e.ename,d.city from employee e inner join department d on e.deptid=d.deptid where city='mumbai';
++--------+--------+
+| ename  | city   |
++--------+--------+
+| Shreya | mumbai |
++--------+--------+
+1 row in set (0.00 sec)
+
+mysql> select count(e.ename) as cnt,d.dname from employee e join department d on e.deptid=d.deptid group by d.dname;
++-----+---------+
+| cnt | dname   |
++-----+---------+
+|   1 | IT      |
+|   2 | Sales   |
+|   1 | HR      |
+|   1 | Manager |
++-----+---------+
+4 rows in set (0.00 sec)
+
+mysql> select e.ename,d.dname from employee e left outer join depratment d on e.deptid=d.deptid;
+ERROR 1146 (42S02): Table 'practice.depratment' doesn't exist
+mysql>  select e.ename,d.dname from employee e left outer join department d on e.deptid=d.deptid;
++--------+---------+
+| ename  | dname   |
++--------+---------+
+| Shreya | IT      |
+| simran | Sales   |
+| Saloni | HR      |
+| Rahul  | Manager |
+| Sonal  | Sales   |
++--------+---------+
+5 rows in set (0.00 sec)
+
+mysql> select d.dname from employee e right outer join department d on e.deptid=d.deptid where e.ename is nul;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'nul' at line 1
+mysql> select d.dname from employee e right outer join department d on e.deptid=d.deptid where e.ename is null;
+Empty set (0.00 sec)
+
+mysql> select * from employee , employee m;
++-----+--------+--------+-------+-----+--------+--------+-------+
+| eid | ename  | deptid | mgrid | eid | ename  | deptid | mgrid |
++-----+--------+--------+-------+-----+--------+--------+-------+
+|   5 | Sonal  |     20 |     2 |   1 | Shreya |     10 |     8 |
+|   4 | Rahul  |     40 |    10 |   1 | Shreya |     10 |     8 |
+|   3 | Saloni |     30 |    10 |   1 | Shreya |     10 |     8 |
+|   2 | simran |     20 |     9 |   1 | Shreya |     10 |     8 |
+|   1 | Shreya |     10 |     8 |   1 | Shreya |     10 |     8 |
+|   5 | Sonal  |     20 |     2 |   2 | simran |     20 |     9 |
+|   4 | Rahul  |     40 |    10 |   2 | simran |     20 |     9 |
+|   3 | Saloni |     30 |    10 |   2 | simran |     20 |     9 |
+|   2 | simran |     20 |     9 |   2 | simran |     20 |     9 |
+|   1 | Shreya |     10 |     8 |   2 | simran |     20 |     9 |
+|   5 | Sonal  |     20 |     2 |   3 | Saloni |     30 |    10 |
+|   4 | Rahul  |     40 |    10 |   3 | Saloni |     30 |    10 |
+|   3 | Saloni |     30 |    10 |   3 | Saloni |     30 |    10 |
+|   2 | simran |     20 |     9 |   3 | Saloni |     30 |    10 |
+|   1 | Shreya |     10 |     8 |   3 | Saloni |     30 |    10 |
+|   5 | Sonal  |     20 |     2 |   4 | Rahul  |     40 |    10 |
+|   4 | Rahul  |     40 |    10 |   4 | Rahul  |     40 |    10 |
+|   3 | Saloni |     30 |    10 |   4 | Rahul  |     40 |    10 |
+|   2 | simran |     20 |     9 |   4 | Rahul  |     40 |    10 |
+|   1 | Shreya |     10 |     8 |   4 | Rahul  |     40 |    10 |
+|   5 | Sonal  |     20 |     2 |   5 | Sonal  |     20 |     2 |
+|   4 | Rahul  |     40 |    10 |   5 | Sonal  |     20 |     2 |
+|   3 | Saloni |     30 |    10 |   5 | Sonal  |     20 |     2 |
+|   2 | simran |     20 |     9 |   5 | Sonal  |     20 |     2 |
+|   1 | Shreya |     10 |     8 |   5 | Sonal  |     20 |     2 |
++-----+--------+--------+-------+-----+--------+--------+-------+
+25 rows in set (0.00 sec)
+
+mysql> select e.ename as employee ,m.ename as manager , from employee e join employee m on e.mgrid = m.empid;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'from employee e join employee m on e.mgrid = m.empid' at line 1
+mysql> select e.ename as employee ,m.ename as manager , from employee e join employee m on e.mgrid = m.eid;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'from employee e join employee m on e.mgrid = m.eid' at line 1
+mysql>  select e.ename as employee ,m.ename as manager  from employee e join employee m on e.mgrid = m.eid;
++----------+---------+
+| employee | manager |
++----------+---------+
+| Sonal    | simran  |
++----------+---------+
+1 row in set (0.00 sec)
+
+
+
+
+
+
+
+mysql> select * from emloyee;
+ERROR 1146 (42S02): Table 'practice.emloyee' doesn't exist
+mysql> select * from employee;
++-----+--------+--------+-------+
+| eid | ename  | deptid | mgrid |
++-----+--------+--------+-------+
+|   1 | Shreya |     10 |     8 |
+|   2 | simran |     20 |     9 |
+|   3 | Saloni |     30 |    10 |
+|   4 | Rahul  |     40 |    10 |
+|   5 | Sonal  |     20 |     2 |
++-----+--------+--------+-------+
+5 rows in set (0.00 sec)
+
+mysql> select ename,salary from employee where salary>(select salary from employee where ename='shreya');
+ERROR 1054 (42S22): Unknown column 'salary' in 'field list'
+mysql> select ename from employee where deptid=(select max(mgrid) from employee)
+    -> ;
++--------+
+| ename  |
++--------+
+| Shreya |
++--------+
+1 row in set (0.00 sec)
+
+
+
+
+
+
+
+mysql> use practice;
+Database changed
+mysql> select * from employee;
++-----+--------+--------+-------+
+| eid | ename  | deptid | mgrid |
++-----+--------+--------+-------+
+|   1 | Shreya |     10 |     8 |
+|   2 | simran |     20 |     9 |
+|   3 | Saloni |     30 |    10 |
+|   4 | Rahul  |     40 |    10 |
+|   5 | Sonal  |     20 |     2 |
++-----+--------+--------+-------+
+5 rows in set (0.00 sec)
+
+mysql> create index index2 on employee(ename);
+Query OK, 0 rows affected (0.15 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> drop index index2 on employee;
+Query OK, 0 rows affected (0.04 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> explain select ename from employee where deptid=10;
++----+-------------+----------+------------+------+--------------------+--------------------+---------+-------+------+----------+-------+
+| id | select_type | table    | partitions | type | possible_keys      | key                | key_len | ref   | rows | filtered | Extra |
++----+-------------+----------+------------+------+--------------------+--------------------+---------+-------+------+----------+-------+
+|  1 | SIMPLE      | employee | NULL       | ref  | emp_dept_deptid_fk | emp_dept_deptid_fk | 5       | const |    1 |   100.00 | NULL  |
++----+-------------+----------+------------+------+--------------------+--------------------+---------+-------+------+----------+-------+
+1 row in set, 1 warning (0.01 sec)
+
+mysql> create index index2 on employee(ename);
+Query OK, 0 rows affected (0.09 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> explain select ename from employee where deptid=10;
++----+-------------+----------+------------+------+--------------------+--------------------+---------+-------+------+----------+-------+
+| id | select_type | table    | partitions | type | possible_keys      | key                | key_len | ref   | rows | filtered | Extra |
++----+-------------+----------+------------+------+--------------------+--------------------+---------+-------+------+----------+-------+
+|  1 | SIMPLE      | employee | NULL       | ref  | emp_dept_deptid_fk | emp_dept_deptid_fk | 5       | const |    1 |   100.00 | NULL  |
++----+-------------+----------+------------+------+--------------------+--------------------+---------+-------+------+----------+-------+
+1 row in set, 1 warning (0.00 sec)
+
+mysql> select ename from employee;
++--------+
+| ename  |
++--------+
+| Rahul  |
+| Saloni |
+| Shreya |
+| simran |
+| Sonal  |
++--------+
+5 rows in set (0.00 sec)
+
+mysql> create table test8(sno int);
+Query OK, 0 rows affected (0.07 sec)
+
+mysql> insert into test8(11);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '11)' at line 1
+mysql> insert into test8 values(11);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into test8 values(3);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into test8 values(15);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into test8 values(7);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from test8;
++------+
+| sno  |
++------+
+|   11 |
+|    3 |
+|   15 |
+|    7 |
++------+
+4 rows in set (0.00 sec)
+
+
+mysql> alter table test8 add constraint primary key(sno);
+Query OK, 0 rows affected (0.18 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+mysql> select * from test8;
++-----+
+| sno |
++-----+
+|   3 |
+|   7 |
+|  11 |
+|  15 |
++-----+
+4 rows in set (0.00 sec)
+
+
+
+
+
+
+
+mysql> delimiter $$
+mysql> create procedure proc_emp()
+    -> begin
+    ->   declare v_ename varchar(100)
+    ->   declare v_deptid int
+    ->   declare v_finished integer default 0
+    ->   declare c1 cursor for select ename,deptid from employee
+    ->   declare continue handler for NOT FOUND set v_finished=1
+    ->   open c1
+    ->   get_emp: LOOP
+    ->      fetch c1 into v_ename , v_deptid
+    ->      if v_finished=1 then
+    ->         leave get_emp
+    ->      end if
+    ->      select concat(v_ename,v_deptid)
+    ->   END LOOP get_emp
+    ->   close c1
+    -> end $$;
+
+
+
+
+
+mysql> use practice;
+Database changed
+mysql> create view v1 as select * from employee;
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> select * from v1;
++-----+--------+--------+-------+
+| eid | ename  | deptid | mgrid |
++-----+--------+--------+-------+
+|   1 | Shreya |     10 |     8 |
+|   2 | simran |     20 |     9 |
+|   3 | Saloni |     30 |    10 |
+|   4 | Rahul  |     40 |    10 |
+|   5 | Sonal  |     20 |     2 |
++-----+--------+--------+-------+
+5 rows in set (0.00 sec)
+
+mysql> insert into v1 values(6,'Amitabh',10,8);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from employee;
++-----+---------+--------+-------+
+| eid | ename   | deptid | mgrid |
++-----+---------+--------+-------+
+|   1 | Shreya  |     10 |     8 |
+|   2 | simran  |     20 |     9 |
+|   3 | Saloni  |     30 |    10 |
+|   4 | Rahul   |     40 |    10 |
+|   5 | Sonal   |     20 |     2 |
+|   6 | Amitabh |     10 |     8 |
++-----+---------+--------+-------+
+6 rows in set (0.00 sec)
+
+mysql> update v1 set deptid=20 where eid=6;
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+
+mysql> select * from employee;
++-----+---------+--------+-------+
+| eid | ename   | deptid | mgrid |
++-----+---------+--------+-------+
+|   1 | Shreya  |     10 |     8 |
+|   2 | simran  |     20 |     9 |
+|   3 | Saloni  |     30 |    10 |
+|   4 | Rahul   |     40 |    10 |
+|   5 | Sonal   |     20 |     2 |
+|   6 | Amitabh |     20 |     8 |
++-----+---------+--------+-------+
+6 rows in set (0.00 sec)
+
+mysql> delete from v1 where ename='amitabh';
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from employee;
++-----+--------+--------+-------+
+| eid | ename  | deptid | mgrid |
++-----+--------+--------+-------+
+|   1 | Shreya |     10 |     8 |
+|   2 | simran |     20 |     9 |
+|   3 | Saloni |     30 |    10 |
+|   4 | Rahul  |     40 |    10 |
+|   5 | Sonal  |     20 |     2 |
++-----+--------+--------+-------+
+5 rows in set (0.00 sec)
+
+
+mysql> alter table employee add column age int;
+Query OK, 0 rows affected (0.05 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> update employee set age=23 where eid=1;
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from employee;
++-----+--------+--------+-------+------+
+| eid | ename  | deptid | mgrid | age  |
++-----+--------+--------+-------+------+
+|   1 | Shreya |     10 |     8 |   23 |
+|   2 | simran |     20 |     9 | NULL |
+|   3 | Saloni |     30 |    10 | NULL |
+|   4 | Rahul  |     40 |    10 | NULL |
+|   5 | Sonal  |     20 |     2 | NULL |
++-----+--------+--------+-------+------+
+5 rows in set (0.00 sec)
+
+mysql> update employee set age=25 where eid=2;
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update employee set age=20 where eid=3;
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update employee set age=23 where eid=4;
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update employee set age=19 where eid=5;
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from employee;
++-----+--------+--------+-------+------+
+| eid | ename  | deptid | mgrid | age  |
++-----+--------+--------+-------+------+
+|   1 | Shreya |     10 |     8 |   23 |
+|   2 | simran |     20 |     9 |   25 |
+|   3 | Saloni |     30 |    10 |   20 |
+|   4 | Rahul  |     40 |    10 |   23 |
+|   5 | Sonal  |     20 |     2 |   19 |
++-----+--------+--------+-------+------+
+5 rows in set (0.00 sec)
+
+mysql> create view v3 as select * from employee where age>20;
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> create view v3 as select * from employee where age>20 with check option;
+ERROR 1050 (42S01): Table 'v3' already exists
+mysql> create view v4 as select * from employee where age>20 with check option;
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> select * from v4;
++-----+--------+--------+-------+------+
+| eid | ename  | deptid | mgrid | age  |
++-----+--------+--------+-------+------+
+|   1 | Shreya |     10 |     8 |   23 |
+|   2 | simran |     20 |     9 |   25 |
+|   4 | Rahul  |     40 |    10 |   23 |
++-----+--------+--------+-------+------+
+3 rows in set (0.00 sec)
+
+
+
+
+mysql> delimiter $$
+mysql> create procedure ppl()
+    -> begin
+    ->   select * from department;
+    -> end $$
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> call ppl();
+    -> $$
++--------+---------+---------+
+| deptid | dname   | city    |
++--------+---------+---------+
+|     10 | IT      | mumbai  |
+|     20 | Sales   | chennai |
+|     30 | HR      | pune    |
+|     40 | Manager | Indore  |
++--------+---------+---------+
+4 rows in set (0.01 sec)
+
+Query OK, 0 rows affected (0.01 sec)
+
+
+
+
+
+
+mysql> create table trig_logs(logs varchar(200));
+Query OK, 0 rows affected (0.08 sec)
+
+mysql> delimiter $$
+mysql> create trigger trig_emp after insert
+    -> on emp
+    -> for each row
+    -> begin
+    ->  insert into trig_logs values('a new row in emp table has been inserted');
+    -> end $$
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> insert into employee values(8,'madhawa',20,2);
+    -> $$
+ERROR 1136 (21S01): Column count doesn't match value count at row 1
+
+
+
+
+
+

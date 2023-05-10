@@ -1,0 +1,39 @@
+/To chenge the delimeter
+//(id,sname,spercentage) is the formal perimetr
+
+//mysql> delimiter $ ;
+//        mysql> select * from student;
+//        -> $
+//        +-----+---------+-------------+
+//        | sid | sname   | spercentage |
+//        +-----+---------+-------------+
+//        |   1 | ABC     |          99 |
+//        |   2 | DEF     |          78 |
+//        |   3 | GHI     |          89 |
+//        |   4 | PQR     |          78 |
+//        |   5 | Shreya  |          90 |
+//        |   6 | Krati   |          78 |
+//        |   7 | Mrunmai |          78 |
+//        +-----+---------+-------------+
+//        7 rows in set (0.00 sec)
+
+
+//mysql> create procedure InsertRecords(IN sid int , IN sname varchar(25) , IN spercentage int)
+//        -> begin
+//        ->  insert into student values(id,sname,spercentage);
+//        -> end
+//        -> $
+
+//mysql> create procedure InsertRecords(IN sid int , IN sname varchar(25) , IN spercentage int)
+//        -> begin
+//        -> insert into student values(id,sname,spercentage);
+//        -> end
+//        -> $
+//        Query OK, 0 rows affected (0.03 sec)
+//
+//        mysql> call InsertRecord(14,"Aniket",67)
+//        -> $
+//        ERROR 1305 (42000): PROCEDURE eltp_jan_23.InsertRecord does not exist
+//        mysql> call InsertRecords(8,"Aniket",67)
+//        -> $
+//        ERROR 1054 (42S22): Unknown column 'id' in 'field list'

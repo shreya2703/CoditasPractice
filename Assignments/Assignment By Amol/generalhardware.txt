@@ -1,0 +1,92 @@
+1)mysql> select sum(quantity),product_id from sales group by product_id;
++---------------+------------+
+| sum(quantity) | product_id |
++---------------+------------+
+|          5474 |      16386 |
+|          3475 |      19440 |
+|          5881 |      21765 |
+|          3241 |      24013 |
+|          4160 |      26722 |
++---------------+------------+
+5 rows in  set (0.00 sec)
+
+
+2)mysql> select sum(sa.quantity),s.name from salesperson s inner join sales sa on sa.salesperson_id =s.id group by s.name;
++------------------+---------+
+| sum(sa.quantity) | name    |
++------------------+---------+
+|             1331 | Baker   |
+|             9307 | Adams   |
+|             1543 | Dickens |
+|             9577 | Carlyle |
++------------------+---------+
+4 rows in set (0.00 sec)
+
+
+
+3)mysql> select  c.cust_name,s.name,o.size_sq_ft from salesperson s inner join office o on s.office_id=o.id inner join customer c on c.salesperson_id=s.id;
++---------------------+---------+------------+
+| cust_name           | name    | size_sq_ft |
++---------------------+---------+------------+
+| Main St. Hardware   | Baker   |        120 |
+| ABC Home Stores     | Baker   |        120 |
+| Acme Hardware Store | Baker   |        120 |
+| City Hardware       | Baker   |        120 |
+| Jane?s Stores       | Adams   |        120 |
+| Central Stores      | Adams   |        120 |
+| Western Hardware    | Dickens |         95 |
+| Fred?s Tool Stores  | Carlyle |        100 |
+| XYZ Stores          | Carlyle |        100 |
++---------------------+---------+------------+
+9 rows in set (0.00 sec)
+
+
+
+
+4)mysql> select count(cust_name),hq_city from customer group by hq_city;
++------------------+-------------+
+| count(cust_name) | hq_city     |
++------------------+-------------+
+|                4 | New York    |
+|                1 | Chicago     |
+|                2 | Los Angeles |
+|                1 | Atlanta     |
+|                1 | Washington  |
++------------------+-------------+
+5 rows in set (0.00 sec)
+
+
+
+
+5)mysql>  select s.name,p.name,sa.quantity from sales sa inner join salesperson s on sa.salesperson_id=s.id inner join
+    ->  product p on p.id=sa.product_id ;
++---------+--------+----------+
+| name    | name   | quantity |
++---------+--------+----------+
+| Baker   | Saw    |      170 |
+| Baker   | Pliers |      688 |
+| Baker   | Hammer |      473 |
+| Adams   | Wrench |     1745 |
+| Adams   | Hammer |     2529 |
+| Adams   | Drill  |     1962 |
+| Adams   | Saw    |     3071 |
+| Dickens | Drill  |      809 |
+| Dickens | Pliers |      734 |
+| Carlyle | Wrench |     3729 |
+| Carlyle | Drill  |     3110 |
+| Carlyle | Pliers |     2738 |
++---------+--------+----------+
+12 rows in set (0.00 sec)
+
+
+
+6)mysql> select s.name,sum(p.unit_price*sa.quantity*s.commision_percentage/100) from sales sa inner join salesperson s on s.id=sa.salesperson_id inner join product p on p.id=sa.product_id group by s.name;
++---------+----------------------------------------------------------+
+| name    | sum(p.unit_price*sa.quantity*s.commision_percentage/100) |
++---------+----------------------------------------------------------+
+| Baker   |                                              2065.200000 |
+| Adams   |                                             31829.307000 |
+| Dickens |                                              3512.991000 |
+| Carlyle |                                             36475.290000 |
++---------+----------------------------------------------------------+
+4 rows in set (0.00 sec)

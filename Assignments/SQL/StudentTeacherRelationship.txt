@@ -1,0 +1,188 @@
+1 to 1 relationship(1 teacher 1 student)
+
+mysql> use assignment2;
+Database changed
+mysql> create table Teacher1(Tid int not null primary key,Tname varchar(30));
+Query OK, 0 rows affected (0.08 sec)
+
+
+mysql> create table student1(Sid int not null primary key,Sname varchar(20),Scity varchar(20), Tid int ,
+    -> foreign key(Tid) references Teacher1(Tid));
+Query OK, 0 rows affected (0.10 sec)
+
+
+mysql> insert into teacher1 values(1,"Aarti");
+Query OK, 1 row affected (0.01 sec)
+
+
+mysql> insert into teacher1 values(2,"Aniruddha");
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into student1 values(1,"Shreya","Dewas",2);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into student1 values(2,"Janvi","Surat",1);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from teacher1;
++-----+-----------+
+| Tid | Tname     |
++-----+-----------+
+|   1 | Aarti     |
+|   2 | Aniruddha |
++-----+-----------+
+2 rows in set (0.00 sec)
+
+mysql> select * from student1;
++-----+--------+-------+------+
+| Sid | Sname  | Scity | Tid  |
++-----+--------+-------+------+
+|   1 | Shreya | Dewas |    2 |
+|   2 | Janvi  | Surat |    1 |
++-----+--------+-------+------+
+2 rows in set (0.00 sec)
+
+
+
+
+
+
+
+
+
+1 to n relationship(1 teacher n student)
+
+
+mysql> create table Teacher1(Tid int not null primary key,Tname varchar(30));
+Query OK, 0 rows affected (0.08 sec)
+
+mysql> insert into teacher1 values(1,"Aarti");
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into teacher1 values(2,"Aniruddha");
+Query OK, 1 row affected (0.01 sec)
+
+mysql> create table studentN(Sid int not null primary key,Sname varchar(20),Scity varchar(20),Tid int,foreign key(Tid) references Teacher1(Tid));
+Query OK, 0 rows affected (0.09 sec)
+
+mysql> insert into studentN values(1,"Shreya","Dewas",1);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into studentN values(2,"Janvi","Surat",2);
+Query OK, 1 row affected (0.01 sec)
+
+
+mysql> insert into studentN values(3,"Krati","Betul",1);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from teacher1;
++-----+-----------+
+| Tid | Tname     |
++-----+-----------+
+|   1 | Aarti     |
+|   2 | Aniruddha |
++-----+-----------+
+2 rows in set (0.00 sec)
+
+mysql> select * from studentN;
++-----+--------+-------+------+
+| Sid | Sname  | Scity | Tid  |
++-----+--------+-------+------+
+|   1 | Shreya | Dewas |    1 |
+|   2 | Janvi  | Surat |    2 |
+|   3 | Krati  | Betul |    1 |
++-----+--------+-------+------+
+3 rows in set (0.00 sec)
+
+
+
+
+n to 1 (1 student n teacher)
+
+mysql> create table TeacherN (Tid int not null  primary key,Tname varchar(20),Sid int);
+Query OK, 0 rows affected (0.07 sec)
+
+mysql> create table Student1toN (Sid int not null primary key,Sname varchar(20),Scity varchar(20));
+Query OK, 0 rows affected (0.07 sec)
+
+mysql> insert into TeacherN values(1,"Aarti",1);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into TeacherN values(2,"Aniruddha",1);
+Query OK, 1 row affected (0.02 sec)
+
+mysql> insert into TeacherN values(3,"Abhishek",2);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into Student1toN values(1,"Krati","Betul");
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into Student1toN values(2,"Shreya","Dewas");
+Query OK, 1 row affected (0.01 sec)
+
+mysql> alter table TeacherN add foreign key(Sid) references Student1toN(Sid);
+Query OK, 3 rows affected (0.16 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql> select * from Student1toN;
++-----+--------+-------+
+| Sid | Sname  | Scity |
++-----+--------+-------+
+|   1 | Krati  | Betul |
+|   2 | Shreya | Dewas |
++-----+--------+-------+
+2 rows in set (0.00 sec)
+
+mysql> select * from teacherN;
++-----+-----------+------+
+| Tid | Tname     | Sid  |
++-----+-----------+------+
+|   1 | Aarti     |    1 |
+|   2 | Aniruddha |    1 |
+|   3 | Abhishek  |    2 |
++-----+-----------+------+
+3 rows in set (0.00 sec)
+
+
+
+n to n (n student n teacher)
+
+mysql> create table TeacherNtoN(Tid int primary key,Tname varchar(20),Sid int);
+Query OK, 0 rows affected (0.08 sec)
+
+mysql> create table StudentNtoN(Sid int primary key, Sname varchar(20),Scity varchar(20),Tid int);
+Query OK, 0 rows affected (0.07 sec)
+
+mysql> insert into TeacherNtoN values(1,"Aarti",1);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into TeacherNtoN values(2,"Aniruddha",1);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into studentNtoN values(1,"Shreya","Dewas",1);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into studentNtoN values(2,"Krati","Betul",2);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into studentNtoN values(3,"Yash","Aagra",1);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from studentNtoN;
++-----+--------+-------+------+
+| Sid | Sname  | Scity | Tid  |
++-----+--------+-------+------+
+|   1 | Shreya | Dewas |    1 |
+|   2 | Krati  | Betul |    2 |
+|   3 | Yash   | Aagra |    1 |
++-----+--------+-------+------+
+3 rows in set (0.00 sec)
+
+mysql> select * from TeacherNtoN;
++-----+-----------+------+
+| Tid | Tname     | Sid  |
++-----+-----------+------+
+|   1 | Aarti     |    1 |
+|   2 | Aniruddha |    1 |
++-----+-----------+------+
+2 rows in set (0.00 sec)

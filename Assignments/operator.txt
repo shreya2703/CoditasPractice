@@ -1,0 +1,256 @@
+OPERATORS IN JAVA
+
+1 UNARY OPERATOR
+
+i)Postfix
+ii)Prefix
+
+public class Main
+{
+	public static void main(String[] args) {
+	int number1=10;
+        boolean uni = true;
+	System.out.println(number1++);         //this will first store the value and then perform increment
+	System.out.println(++number1);         //this will increase the value first and then store it
+	System.out.println(number1--);         //this will first store the value and then perform decrement
+	System.out.println(--number1);         //this will decrement the value first and then store it
+        System.out.println(!uni);
+        System.out.println(~number1);
+	
+	}
+}
+
+Output:- 
+
+10
+12
+12
+10
+false
+-11
+
+===========================================================================
+
+2 ARITHMETIC OPERATOR
+
+i)Multiplicative
+ii)Additive
+
+
+public class Main
+{
+	public static void main(String[] args) {
+	int number1=40;
+	int number2=20;
+	System.out.println(number1+number2);
+	System.out.println(number1-number2);
+	System.out.println(number1*number2);
+	System.out.println(number1/number2);
+	System.out.println(number1%number2);
+	
+	}
+}
+
+
+Output:-
+
+60
+20
+800
+2
+0
+
+
+==============================================================================
+
+3 SHIFT
+
+public class Main
+{
+	public static void main(String[] args) {
+	System.out.println(10<<2);                //10*2^2=10*4=40 (Left Shift) 
+        System.out.println(10<<3);               //10*2^3=10*8=80 
+        System.out.println(10>>2);              //10/2^2=10/4=2  (Right Shift) 
+        System.out.println(20>>2);             //20/2^2=20/4=5  
+	
+	}
+}
+
+
+Output:-
+
+40
+80
+2
+5
+
+
+===============================================================================
+
+4 AND OPERATOR
+
+i)logical AND &&
+ii)bitwise AND &
+
+
+public class Main
+{
+	public static void main(String[] args) {
+        int number1=10;  
+        int number2=5;  
+        int number3=20;  
+        System.out.println(number1<number2 && number1<number3);       //false && true = false (checks the second condition only when first is true otherwise if 1st condition is false the result is false only)
+        System.out.println(number1<number2 & number1<number3);       //false & true = false(checks both the condition)
+        System.out.println(number1<number3 & number1<number2);      //true & false =false
+        System.out.println(number1<number3 & number2<number1);      //true & true = true
+	}
+}
+
+
+Output:-
+
+false
+false
+false
+true
+
+==================================================================================
+
+5 OR OPERATOR
+
+i)logical OR ||
+ii)bitwise OR |
+
+
+public class Main
+{
+    public static void main(String[] args) {
+    int number1=10;  
+    int number2=5;  
+    int number3=20;  
+    System.out.println(number1>number2 || number1<number3);         //true || true = true  
+    System.out.println(number1>number2 | number1<number3);         //true | true = true  
+    System.out.println(number1>number2 || number1++<number3);     //true || true = true  
+    System.out.println(number1);                                 //10 because second condition is not checked  
+    System.out.println(number1>number2 | number1++<number3);    //true | true = true  
+    System.out.println(number1);                               //11 because second condition is checked 
+    System.out.println(number1>number2 || number1<number2);   // true || false = true(it checks the first one )
+	}
+}
+
+
+Output:-
+
+true
+true
+true
+10
+true
+11
+true
+
+
+===============================================================================
+
+6 TERNARY OPERATOR
+
+public class Main
+{
+	public static void main(String[] args) {
+	int number1=10;  
+        int number2=5;  
+        int minNumber=(number1<number2)?number1:number2;         //it works like if else
+        System.out.println("minimum number is " + minNumber);
+	}
+}
+
+
+Output:-
+
+minimum number is 5
+
+==================================================================================
+
+7 ASSIGNMENT OPERATOR
+
+public class Main
+{
+	public static void main(String[] args) {
+	int number1=10;  
+        int number2=5;  
+        number1+=4;        //number1=number1+4   
+        System.out.println(number1);  
+        number2-=4;       //number2=number2-4   
+        System.out.println(number2); 
+        number2*=4;
+        System.out.println(number2);
+        number1/=4;
+        System.out.println(number1);
+    
+    
+	}
+}
+
+
+Output:-
+
+14
+1
+4
+3
+
+
+======================================================================================
+
+8 RELATIONAL OPERATOR
+
+
+public class Main
+{
+	public static void main(String[] args) {
+	int number1 = 8, number2 = 13;
+        System.out.println(number1 == number2);  // false
+        System.out.println(number1 != number2);  // true
+        System.out.println(number1 > number2);  // false
+        System.out.println(number1 < number2);  // true
+        System.out.println(number1 >= number2);  // false
+        System.out.println(number1 <= number2);  // true
+	
+	}
+}
+
+
+Output:-
+
+false
+true
+false
+true
+false
+true
+
+
+=======================================================================================
+
+9 INSTANCE OF
+
+public class Main
+{
+	public static void main(String[] args) {
+	String str = "Shreya";
+        boolean result;
+        result = str instanceof String;     //checks if str is an instance of the String class
+        System.out.println("Is str an object of String? " + result);
+	
+	}
+}
+
+
+Output:-
+
+Is str an object of String? true
+
+
+=========================================================================================
+
+

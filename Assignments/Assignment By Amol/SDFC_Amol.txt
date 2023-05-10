@@ -1,0 +1,242 @@
+mysql> use SDFC;
+Database changed
+mysql> create table customer(customerid int primary key,custname varchar(20),contactno int , dob date,gender varchar(1),amountspent int, check(gender in (M,F));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+mysql> create table customer(customerid int primary key,custname varchar(20),contactno int , dob date,gender varchar(1),amountspent int, check(gender in (M,F)));
+ERROR 3820 (HY000): Check constraint 'customer_chk_1' refers to non-existing column 'M'.
+mysql> create table customer(customerid int primary key,custname varchar(20),contactno int , dob date,gender varchar(1),amountspent int, check(gender in ("M","F")));
+Query OK, 0 rows affected (0.10 sec)
+
+mysql> create table creditcard(cardno varchar(20) primary key,customerid int,cardtype varchar(20),doe date,creditlimit int,check(cardno like 'C%'),check(cardtype in("Platinum","Gold","Silver"));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+mysql> create table creditcard
+    -> (cardno varchar(20) primary key,customerid int,cardtype varchar(20),doe date,creditlimit int,check(cardno like 'C%'),check(cardtype in("Platinum","Gold","Silver")));
+Query OK, 0 rows affected (0.09 sec)
+
+mysql> desc creditcard;
++-------------+-------------+------+-----+---------+-------+
+| Field       | Type        | Null | Key | Default | Extra |
++-------------+-------------+------+-----+---------+-------+
+| cardno      | varchar(20) | NO   | PRI | NULL    |       |
+| customerid  | int         | YES  |     | NULL    |       |
+| cardtype    | varchar(20) | YES  |     | NULL    |       |
+| doe         | date        | YES  |     | NULL    |       |
+| creditlimit | int         | YES  |     | NULL    |       |
++-------------+-------------+------+-----+---------+-------+
+5 rows in set (0.01 sec)
+
+mysql> desc customer;
++-------------+-------------+------+-----+---------+-------+
+| Field       | Type        | Null | Key | Default | Extra |
++-------------+-------------+------+-----+---------+-------+
+| customerid  | int         | NO   | PRI | NULL    |       |
+| custname    | varchar(20) | YES  |     | NULL    |       |
+| contactno   | int         | YES  |     | NULL    |       |
+| dob         | date        | YES  |     | NULL    |       |
+| gender      | varchar(1)  | YES  |     | NULL    |       |
+| amountspent | int         | YES  |     | NULL    |       |
++-------------+-------------+------+-----+---------+-------+
+6 rows in set (0.00 sec)
+
+mysql> alter table creditcard add foreign key(customerid) references customer(customerid);
+Query OK, 0 rows affected (0.22 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc creditcard;
++-------------+-------------+------+-----+---------+-------+
+| Field       | Type        | Null | Key | Default | Extra |
++-------------+-------------+------+-----+---------+-------+
+| cardno      | varchar(20) | NO   | PRI | NULL    |       |
+| customerid  | int         | YES  | MUL | NULL    |       |
+| cardtype    | varchar(20) | YES  |     | NULL    |       |
+| doe         | date        | YES  |     | NULL    |       |
+| creditlimit | int         | YES  |     | NULL    |       |
++-------------+-------------+------+-----+---------+-------+
+5 rows in set (0.00 sec)
+
+mysql> create table transaction(transactionid varchar(20) primary key,cardno varchar(20),dot date,tamount int,check(transactionid like 'T%'),foreign key(cardno) references creditcard(cardno));
+Query OK, 0 rows affected (0.09 sec)
+
+mysql> desc transaction;
++---------------+-------------+------+-----+---------+-------+
+| Field         | Type        | Null | Key | Default | Extra |
++---------------+-------------+------+-----+---------+-------+
+| transactionid | varchar(20) | NO   | PRI | NULL    |       |
+| cardno        | varchar(20) | YES  | MUL | NULL    |       |
+| dot           | date        | YES  |     | NULL    |       |
+| tamount       | int         | YES  |     | NULL    |       |
++---------------+-------------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+
+mysql> insert into customer(customerid,custname,contactno,dob,gender,amountspent) values(1001,"Ridhima",9876543210,'1982-11-22',"F",0);
+ERROR 1264 (22003): Out of range value for column 'contactno' at row 1
+mysql> insert into customer values(1001,"Ridhima",9876543,"1982-11-22","F",0);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into customer values(1002,"Anuj",89338843,"1977-08-10","M",40000);
+Query OK, 1 row affected (0.01 sec)
+
+mysql>  insert into customer values(1003,"Arvind",85547474,"1989-03-24","M",800000);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into customer values(1004,"Antra",85564883,"1980-09-07","F",0);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into customer values(1005,"Joseph",98564883,"1979-01-19","M",60000);
+Query OK, 1 row affected (0.01 sec)
+
+mysql>  insert into customer values(1006,"Ragini",73864883,"1988-11-28","F",300000);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into customer values(1007,"Sara",79564883,"1990-02-23","M",0);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into creditcard value("C101",1002,"Platinum","2016-08-15",400000);
+Query OK, 1 row affected (0.01 sec)
+
+mysql>  insert into creditcard value("C102",1005,"Gold","2016-10-06",250000);
+Query OK, 1 row affected (0.02 sec)
+
+mysql> insert into creditcard value("C103",1005,"Platinum","2017-04-17",600000);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into creditcard value("C104",1003,"Silver","2018-11-28",550000);
+Query OK, 1 row affected (0.01 sec)
+
+mysql>  insert into creditcard value("C105",1006,"Gold","2020-01-03",300000);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into creditcard value("C106",1003,"Silver","2017-10-04",450000);
+Query OK, 1 row affected (0.01 sec)
+
+mysql>  insert into creditcard value("C107",1001,"Gold","2016-11-16",25000);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into creditcard value("C108",1005,"Silver","2017-09-18",450000);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into creditcard value("C109",1004,"Silver","2016-09-18",550000);
+Query OK, 1 row affected (0.02 sec)
+
+mysql> insert into transaction values("T101","C101","2014-03-13",40000);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into transaction values("T102","C102","2014-10-09",20000);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into transaction values("T103","C102","2015-04-10",450000);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into transaction values("T104","C105","2015-04-14",200000);
+Query OK, 1 row affected (0.01 sec)
+
+mysql>  insert into transaction values("T105","C103","2015-06-21",40000);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into transaction values("T106","C105","2015-07-24",100000);
+Query OK, 1 row affected (0.02 sec)
+
+mysql> insert into transaction values("T107","C106","2015-11-02",350000);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> alter table customer modify amountspent int default 0;
+Query OK, 0 rows affected (0.03 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc customer;
++-------------+-------------+------+-----+---------+-------+
+| Field       | Type        | Null | Key | Default | Extra |
++-------------+-------------+------+-----+---------+-------+
+| customerid  | int         | NO   | PRI | NULL    |       |
+| custname    | varchar(20) | YES  |     | NULL    |       |
+| contactno   | int         | YES  |     | NULL    |       |
+| dob         | date        | YES  |     | NULL    |       |
+| gender      | varchar(1)  | YES  |     | NULL    |       |
+| amountspent | int         | YES  |     | 0       |       |
++-------------+-------------+------+-----+---------+-------+
+6 rows in set (0.00 sec)
+
+mysql> select * from customer;
++------------+----------+-----------+------------+--------+-------------+
+| customerid | custname | contactno | dob        | gender | amountspent |
++------------+----------+-----------+------------+--------+-------------+
+|       1001 | Ridhima  |   9876543 | 1982-11-22 | F      |           0 |
+|       1002 | Anuj     |  89338843 | 1977-08-10 | M      |       40000 |
+|       1003 | Arvind   |  85547474 | 1989-03-24 | M      |      800000 |
+|       1004 | Antra    |  85564883 | 1980-09-07 | F      |           0 |
+|       1005 | Joseph   |  98564883 | 1979-01-19 | M      |       60000 |
+|       1006 | Ragini   |  73864883 | 1988-11-28 | F      |      300000 |
+|       1007 | Sara     |  79564883 | 1990-02-23 | M      |           0 |
++------------+----------+-----------+------------+--------+-------------+
+7 rows in set (0.00 sec)
+
+mysql> select * from creditcard;
++--------+------------+----------+------------+-------------+
+| cardno | customerid | cardtype | doe        | creditlimit |
++--------+------------+----------+------------+-------------+
+| C101   |       1002 | Platinum | 2016-08-15 |      400000 |
+| C102   |       1005 | Gold     | 2016-10-06 |      250000 |
+| C103   |       1005 | Platinum | 2017-04-17 |      600000 |
+| C104   |       1003 | Silver   | 2018-11-28 |      550000 |
+| C105   |       1006 | Gold     | 2020-01-03 |      300000 |
+| C106   |       1003 | Silver   | 2017-10-04 |      450000 |
+| C107   |       1001 | Gold     | 2016-11-16 |       25000 |
+| C108   |       1005 | Silver   | 2017-09-18 |      450000 |
+| C109   |       1004 | Silver   | 2016-09-18 |      550000 |
++--------+------------+----------+------------+-------------+
+9 rows in set (0.00 sec)
+
+mysql> select * from transaction;
++---------------+--------+------------+---------+
+| transactionid | cardno | dot        | tamount |
++---------------+--------+------------+---------+
+| T101          | C101   | 2014-03-13 |   40000 |
+| T102          | C102   | 2014-10-09 |   20000 |
+| T103          | C102   | 2015-04-10 |  450000 |
+| T104          | C105   | 2015-04-14 |  200000 |
+| T105          | C103   | 2015-06-21 |   40000 |
+| T106          | C105   | 2015-07-24 |  100000 |
+| T107          | C106   | 2015-11-02 |  350000 |
++---------------+--------+------------+---------+
+7 rows in set (0.00 sec)
+
+
+
+
+QUERIES
+
+
+A)mysql> select customerid,custname,amountspent from customer where custname like '%i%'
+    -> and dob between '1982-11-01' and '1988-12-31';
++------------+----------+-------------+
+| customerid | custname | amountspent |
++------------+----------+-------------+
+|       1001 | Ridhima  |           0 |
+|       1006 | Ragini   |      300000 |
++------------+----------+-------------+
+2 rows in set (0.00 sec)
+
+
+B)mysql> select concat(custname,customerid) as custdetails,contactno,gender from customer  where gender='M' and customerid not in(select customerid from creditcard);
++-------------+-----------+--------+
+| custdetails | contactno | gender |
++-------------+-----------+--------+
+| Sara1007    |  79564883 | M      |
++-------------+-----------+--------+
+1 row in set (0.00 sec)
+
+
+C)mysql> select customerid,creditlimit as "total credit limit" from creditcard where creditlimit >(select avg(creditlimit) from creditcard);
++------------+--------------------+
+| customerid | total credit limit |
++------------+--------------------+
+|       1002 |             400000 |
+|       1005 |             600000 |
+|       1003 |             550000 |
+|       1003 |             450000 |
+|       1005 |             450000 |
+|       1004 |             550000 |
++------------+--------------------+
+6 rows in set (0.01 sec)
+
+D)

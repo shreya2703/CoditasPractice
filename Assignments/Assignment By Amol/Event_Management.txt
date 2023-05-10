@@ -1,0 +1,96 @@
+1)mysql> select u.first_name,u.last_name,c.name,c.city
+    -> from user u inner join event_application e
+    -> on u.id=e.user_id
+    -> inner join company c
+    -> on c.id=e.company_id
+    -> where e.registration_status='Completed';
++------------+-----------+----------+----------+
+| first_name | last_name | name     | city     |
++------------+-----------+----------+----------+
+| Dan        | Williams  | Amazon   | Bengluru |
+| Willey     | Harris    | Google   | Bijing   |
+| Olivia     | Walker    | Facebook | Ontario  |
+| Charlotte  | Chapman   | Amazon   | Bengluru |
++------------+-----------+----------+----------+
+4 rows in set (0.00 sec)
+
+2)mysql> select count(id),country from company group by country;
++-----------+---------+
+| count(id) | country |
++-----------+---------+
+|         1 | India   |
+|         1 | Canada  |
+|         2 | China   |
+|         1 | Japan   |
++-----------+---------+
+4 rows in set (0.00 sec)
+
+
+3)mysql> select first_name,last_name,country from user where country like '%i%';
++------------+-----------+---------+
+| first_name | last_name | country |
++------------+-----------+---------+
+| Dan        | Williams  | India   |
+| Willey     | Harris    | China   |
+| Barrack    | Robinson  | China   |
+| Emma       | Allen     | India   |
+| Isabella   | Baker     | China   |
+| Charlotte  | Chapman   | India   |
++------------+-----------+---------+
+6 rows in set (0.00 sec)
+
+
+4)mysql> select u.first_name,u.last_name,c.country
+    -> from user u inner join event_application e
+    -> on u.id=e.user_id
+    -> inner join company c
+    -> on c.id=e.company_id
+    -> where c.country in ('India','Japan');
++------------+-----------+---------+
+| first_name | last_name | country |
++------------+-----------+---------+
+| Dan        | Williams  | India   |
+| Emma       | Allen     | India   |
+| Charlotte  | Chapman   | India   |
+| Chirst     | Stevens   | Japan   |
++------------+-----------+---------+
+4 rows in set (0.00 sec)
+
+
+5)mysql> select count(user_id),company_id from event_application group by company_id;
++----------------+------------+
+| count(user_id) | company_id |
++----------------+------------+
+|              3 |        101 |
+|              3 |        102 |
+|              2 |        103 |
+|              1 |        104 |
+|              1 |        105 |
++----------------+------------+
+5 rows in set (0.00 sec)
+
+
+6)mysql> select u.first_name,u.last_name,u.job_title,ev.name,c.name,c.city
+    ->  from user u inner join event_application e
+    -> on u.id=e.user_id
+    -> inner join company c
+    -> on c.id=e.company_id
+    -> inner join event ev
+    -> on ev.id=e.event_id;
++------------+-----------+-----------+-------------+-----------+----------+
+| first_name | last_name | job_title | name        | name      | city     |
++------------+-----------+-----------+-------------+-----------+----------+
+| Dan        | Williams  | Director  | Spring Fair | Amazon    | Bengluru |
+| Chirst     | Stevens   | Manager   | Spring Fair | Linkedin  | Tokyo    |
+| Charlotte  | Chapman   | Engineer  | Spring Fair | Amazon    | Bengluru |
+| Willey     | Harris    | Manager   | Autumn Fair | Google    | Bijing   |
+| Sam        | Wilson    | Manager   | Oracle      | Facebook  | Ontario  |
+| Olivia     | Walker    | Director  | Oracle      | Facebook  | Ontario  |
+| Isabella   | Baker     | Director  | Oracle      | Google    | Bijing   |
+| Barrack    | Robinson  | Director  | BETT        | Microsoft | Shanghai |
+| Emma       | Allen     | Engineer  | BETT        | Amazon    | Bengluru |
+| Sophia     | Holmes    | Engineer  | BETT        | Facebook  | Ontario  |
++------------+-----------+-----------+-------------+-----------+----------+
+10 rows in set (0.00 sec)
+
+

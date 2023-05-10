@@ -1,0 +1,250 @@
+1.
+
+mysql> create database evaluation1;
+Query OK, 1 row affected (0.01 sec)
+
+mysql> use evaluation1;
+Database changed
+mysql> create table student(sid int primary key,name varchar(30),age int,course varchar(20),city varchar(20),year date,percentage int);
+Query OK, 0 rows affected (0.07 sec)
+
+mysql> create table teacher(Tid int primary key,name varchar(20),age int,course varchar(20),city varchar(20),subject_expert varchar(20),year_of_experience int);
+Query OK, 0 rows affected (0.07 sec)
+
+mysql> alter table student add Tid int;
+Query OK, 0 rows affected (0.04 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> alter table student modify year int;
+Query OK, 0 rows affected (0.14 sec)
+
+mysql> insert into student(sid,name,age,course,city,year,percentage,tid)
+    ->  values(1,"Shreya",21,"Btech","Pune",1,75,1),
+    -> (2,"Mrunmai",23,"Mtech","Mumbai",2,67,1),
+    -> (3,"Krati",27,"Btech","Pune",3,89,2),
+    -> (4,"Aniket",27,"Mtech","Mumbai",3,56,3),
+    ->  (5,"Yash",25,"MBA","Aagra",4,79,4),
+    -> (6,"Tanmay",29,"MCA","Aagra",2,68,5),
+    -> (7,"Sujan",24,"Btech","Indore",1,79,6),
+    -> (8,"Harini",30,"Mtech","Indore",3,90,6);
+Query OK, 8 rows affected (0.01 sec)
+Records: 8  Duplicates: 0  Warnings: 0
+
+
+
+mysql> select * from student;
++-----+---------+------+--------+--------+------+------------+------+
+| sid | name    | age  | course | city   | year | percentage | Tid  |
++-----+---------+------+--------+--------+------+------------+------+
+|   1 | Shreya  |   21 | Btech  | Pune   |    1 |         75 |    1 |
+|   2 | Mrunmai |   23 | Mtech  | Mumbai |    2 |         67 |    1 |
+|   3 | Krati   |   27 | Btech  | Pune   |    3 |         89 |    2 |
+|   4 | Aniket  |   27 | Mtech  | Mumbai |    3 |         56 |    3 |
+|   5 | Yash    |   25 | MBA    | Aagra  |    4 |         79 |    4 |
+|   6 | Tanmay  |   29 | MCA    | Aagra  |    2 |         68 |    5 |
+|   7 | Sujan   |   24 | Btech  | Indore |    1 |         79 |    6 |
+|   8 | Harini  |   30 | Mtech  | Indore |    3 |         90 |    6 |
++-----+---------+------+--------+--------+------+------------+------+
+8 rows in set (0.00 sec)
+
+
+
+mysql> insert into teacher(tid,name,age,course,city,subject_expert,year_of_experience)
+    -> values(1,"Aarti",40,"java","Pune","Java",5),
+    -> (2,"Aniruddha",45,"Angular","Pune","JavaScript",2),
+    -> (3,"Vibha",27,"Cpp","Mumbai","Cpp",4),
+    -> (4,"Nisha",47,"C","Mumbai","Cpp",5),
+    -> (5,"Rishi",38,"Maths","Indore","Maths",6),
+    -> (6,"Nishant",40,"Science","Aagra","Science",2),
+    -> (7,"Pavan",38,"OS","Mumbai","OS",5),
+    -> (8,"Karan",27,"DBMS","Pune","CPP",4);
+Query OK, 8 rows affected (0.01 sec)
+Records: 8  Duplicates: 0  Warnings: 0
+
+mysql> alter table student add foreign key(Tid) references teacher(tid);
+Query OK, 8 rows affected (0.16 sec)
+Records: 8  Duplicates: 0  Warnings: 0
+
+mysql> select * from student;
++-----+---------+------+--------+--------+------+------------+------+
+| sid | name    | age  | course | city   | year | percentage | Tid  |
++-----+---------+------+--------+--------+------+------------+------+
+|   1 | Shreya  |   21 | Btech  | Pune   |    1 |         75 |    1 |
+|   2 | Mrunmai |   23 | Mtech  | Mumbai |    2 |         67 |    1 |
+|   3 | Krati   |   27 | Btech  | Pune   |    3 |         89 |    2 |
+|   4 | Aniket  |   27 | Mtech  | Mumbai |    3 |         56 |    3 |
+|   5 | Yash    |   25 | MBA    | Aagra  |    4 |         79 |    4 |
+|   6 | Tanmay  |   29 | MCA    | Aagra  |    2 |         68 |    5 |
+|   7 | Sujan   |   24 | Btech  | Indore |    1 |         79 |    6 |
+|   8 | Harini  |   30 | Mtech  | Indore |    3 |         90 |    6 |
++-----+---------+------+--------+--------+------+------------+------+
+8 rows in set (0.00 sec)
+
+mysql> select * from teacher;
++-----+-----------+------+---------+--------+----------------+--------------------+
+| Tid | name      | age  | course  | city   | subject_expert | year_of_experience |
++-----+-----------+------+---------+--------+----------------+--------------------+
+|   1 | Aarti     |   40 | java    | Pune   | Java           |                  5 |
+|   2 | Aniruddha |   45 | Angular | Pune   | JavaScript     |                  2 |
+|   3 | Vibha     |   27 | Cpp     | Mumbai | Cpp            |                  4 |
+|   4 | Nisha     |   47 | C       | Mumbai | Cpp            |                  5 |
+|   5 | Rishi     |   38 | Maths   | Indore | Maths          |                  6 |
+|   6 | Nishant   |   40 | Science | Aagra  | Science        |                  2 |
+|   7 | Pavan     |   38 | OS      | Mumbai | OS             |                  5 |
+|   8 | Karan     |   27 | DBMS    | Pune   | CPP            |                  4 |
++-----+-----------+------+---------+--------+----------------+--------------------+
+8 rows in set (0.00 sec)
+
+
+
+3.mysql> alter table teacher rename column course to subject;
+Query OK, 0 rows affected (0.03 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+
+
+
+
+
+ 4.mysql> create table bkup_student_table as select * from student;
+Query OK, 8 rows affected (0.08 sec)
+Records: 8  Duplicates: 0  Warnings: 0
+
+mysql> create table bkup_teacher_table as select * from teacher;
+Query OK, 8 rows affected (0.07 sec)
+Records: 8  Duplicates: 0  Warnings: 0
+
+mysql> desc bkup_teacher_table;
++--------------------+-------------+------+-----+---------+-------+
+| Field              | Type        | Null | Key | Default | Extra |
++--------------------+-------------+------+-----+---------+-------+
+| Tid                | int         | NO   |     | NULL    |       |
+| name               | varchar(20) | YES  |     | NULL    |       |
+| age                | int         | YES  |     | NULL    |       |
+| subject            | varchar(20) | YES  |     | NULL    |       |
+| city               | varchar(20) | YES  |     | NULL    |       |
+| subject_expert     | varchar(20) | YES  |     | NULL    |       |
+| year_of_experience | int         | YES  |     | NULL    |       |
++--------------------+-------------+------+-----+---------+-------+
+7 rows in set (0.00 sec)
+
+mysql> select * from bkup_student_table;
++-----+---------+------+--------+--------+------+------------+------+
+| sid | name    | age  | course | city   | year | percentage | Tid  |
++-----+---------+------+--------+--------+------+------------+------+
+|   1 | Shreya  |   21 | Btech  | Pune   |    1 |         75 |    1 |
+|   2 | Mrunmai |   23 | Mtech  | Mumbai |    2 |         67 |    1 |
+|   3 | Krati   |   27 | Btech  | Pune   |    3 |         89 |    2 |
+|   4 | Aniket  |   27 | Mtech  | Mumbai |    3 |         56 |    3 |
+|   5 | Yash    |   25 | MBA    | Aagra  |    4 |         79 |    4 |
+|   6 | Tanmay  |   29 | MCA    | Aagra  |    2 |         68 |    5 |
+|   7 | Sujan   |   24 | Btech  | Indore |    1 |         79 |    6 |
+|   8 | Harini  |   30 | Mtech  | Indore |    3 |         90 |    6 |
++-----+---------+------+--------+--------+------+------------+------+
+8 rows in set (0.00 sec)
+
+
+
+
+
+5.mysql> select name , city from student where city in("pune","mumbai");
++---------+--------+
+| name    | city   |
++---------+--------+
+| Shreya  | Pune   |
+| Mrunmai | Mumbai |
+| Krati   | Pune   |
+| Aniket  | Mumbai |
++---------+--------+
+4 rows in set (0.00 sec)
+
+
+
+6.mysql> select name,city from teacher where name like 'A%' and city="Ahemdabad";
++-----------+-----------+
+| name      | city      |
++-----------+-----------+
+| Aniruddha | Ahemdabad |
++-----------+-----------+
+1 row in set (0.00 sec)
+
+
+
+
+
+
+7.mysql> select name,year_of_experience from teacher having year_of_experience>4;
++-------+--------------------+
+| name  | year_of_experience |
++-------+--------------------+
+| Aarti |                  5 |
+| Nisha |                  5 |
+| Rishi |                  6 |
+| Pavan |                  5 |
++-------+--------------------+
+4 rows in set (0.00 sec)
+
+
+
+8.mysql> select city,count(name) from student group by city;
++--------+-------------+
+| city   | count(name) |
++--------+-------------+
+| Pune   |           2 |
+| Mumbai |           2 |
+| Aagra  |           2 |
+| Indore |           2 |
++--------+-------------+
+4 rows in set (0.00 sec)
+
+
+9.mysql> select s.name,s.percentage,t.name
+    -> from student s inner join teacher t
+    -> on s.tid=t.tid
+    -> where s.percentage>70 and t.year_of_experience>3;
++--------+------------+-------+
+| name   | percentage | name  |
++--------+------------+-------+
+| Shreya |         75 | Aarti |
+| Yash   |         79 | Nisha |
++--------+------------+-------+
+2 rows in set (0.00 sec)
+
+
+
+
+10.mysql> create table bkup_Teacher like teacher;
+Query OK, 0 rows affected (0.07 sec)
+
+mysql> desc bkup_TEACHER;
++--------------------+-------------+------+-----+---------+-------+
+| Field              | Type        | Null | Key | Default | Extra |
++--------------------+-------------+------+-----+---------+-------+
+| Tid                | int         | NO   | PRI | NULL    |       |
+| name               | varchar(20) | YES  |     | NULL    |       |
+| age                | int         | YES  |     | NULL    |       |
+| subject            | varchar(20) | YES  |     | NULL    |       |
+| city               | varchar(20) | YES  |     | NULL    |       |
+| subject_expert     | varchar(20) | YES  |     | NULL    |       |
+| year_of_experience | int         | YES  |     | NULL    |       |
++--------------------+-------------+------+-----+---------+-------+
+7 rows in set (0.00 sec)
+
+mysql> CREATE TABLE BKUP_STUDENT LIKE STUDENT;
+Query OK, 0 rows affected (0.09 sec)
+
+mysql> DESC BKUP_STUDENT;
++------------+-------------+------+-----+---------+-------+
+| Field      | Type        | Null | Key | Default | Extra |
++------------+-------------+------+-----+---------+-------+
+| sid        | int         | NO   | PRI | NULL    |       |
+| name       | varchar(30) | YES  |     | NULL    |       |
+| age        | int         | YES  |     | NULL    |       |
+| course     | varchar(20) | YES  |     | NULL    |       |
+| city       | varchar(20) | YES  |     | NULL    |       |
+| year       | int         | YES  |     | NULL    |       |
+| percentage | int         | YES  |     | NULL    |       |
+| Tid        | int         | YES  | MUL | NULL    |       |
++------------+-------------+------+-----+---------+-------+
+8 rows in set (0.00 sec)
+

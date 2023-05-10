@@ -1,0 +1,818 @@
+1) SQL INTRO
+
+mysql> select * from employee;
++-----+--------+--------+-------+------+
+| eid | ename  | deptid | mgrid | age  |
++-----+--------+--------+-------+------+
+|   1 | Shreya |     10 |     8 |   23 |
+|   2 | simran |     20 |     9 |   25 |
+|   3 | Saloni |     30 |    10 |   20 |
+|   4 | Rahul  |     40 |    10 |   23 |
+|   5 | Sonal  |     20 |     2 |   19 |
++-----+--------+--------+-------+------+
+5 rows in set (0.00 sec)
+
+2)Select Statement
+
+mysql> select ename, deptid from employee;
++--------+--------+
+| ename  | deptid |
++--------+--------+
+| Shreya |     10 |
+| simran |     20 |
+| Saloni |     30 |
+| Rahul  |     40 |
+| Sonal  |     20 |
++--------+--------+
+5 rows in set (0.00 sec)
+
+3)Distinct
+
+mysql> select distinct ename from employee;
++--------+
+| ename  |
++--------+
+| Rahul  |
+| Saloni |
+| Shreya |
+| simran |
+| Sonal  |
++--------+
+5 rows in set (0.00 sec)
+
+mysql> select count(distinct ename) from employee;
++-----------------------+
+| count(distinct ename) |
++-----------------------+
+|                     5 |
++-----------------------+
+1 row in set (0.00 sec)
+
+
+4)Where Clause
+
+mysql> select * from employee where deptid=20;
++-----+--------+--------+-------+------+
+| eid | ename  | deptid | mgrid | age  |
++-----+--------+--------+-------+------+
+|   2 | simran |     20 |     9 |   25 |
+|   5 | Sonal  |     20 |     2 |   19 |
++-----+--------+--------+-------+------+
+2 rows in set (0.01 sec)
+
+
+5)AND 
+
+mysql> select ename,deptid,mgrid from employee where deptid=10 and mgrid=8;
++--------+--------+-------+
+| ename  | deptid | mgrid |
++--------+--------+-------+
+| Shreya |     10 |     8 |
++--------+--------+-------+
+1 row in set (0.00 sec)
+
+
+6)OR 
+
+mysql> select * from employee where  deptid=10 or deptid=20;
++-----+--------+--------+-------+------+
+| eid | ename  | deptid | mgrid | age  |
++-----+--------+--------+-------+------+
+|   1 | Shreya |     10 |     8 |   23 |
+|   2 | simran |     20 |     9 |   25 |
+|   5 | Sonal  |     20 |     2 |   19 |
++-----+--------+--------+-------+------+
+3 rows in set (0.00 sec)
+
+
+7)NOT 
+
+mysql> select * from employee where not deptid=10;
++-----+--------+--------+-------+------+
+| eid | ename  | deptid | mgrid | age  |
++-----+--------+--------+-------+------+
+|   2 | simran |     20 |     9 |   25 |
+|   5 | Sonal  |     20 |     2 |   19 |
+|   3 | Saloni |     30 |    10 |   20 |
+|   4 | Rahul  |     40 |    10 |   23 |
++-----+--------+--------+-------+------+
+4 rows in set (0.00 sec)
+
+
+8)ORDER BY
+
+mysql> select * from employee order by ename;
++-----+--------+--------+-------+------+
+| eid | ename  | deptid | mgrid | age  |
++-----+--------+--------+-------+------+
+|   4 | Rahul  |     40 |    10 |   23 |
+|   3 | Saloni |     30 |    10 |   20 |
+|   1 | Shreya |     10 |     8 |   23 |
+|   2 | simran |     20 |     9 |   25 |
+|   5 | Sonal  |     20 |     2 |   19 |
++-----+--------+--------+-------+------+
+5 rows in set (0.00 sec)
+
+mysql> select * from employee order by ename desc;
++-----+--------+--------+-------+------+
+| eid | ename  | deptid | mgrid | age  |
++-----+--------+--------+-------+------+
+|   5 | Sonal  |     20 |     2 |   19 |
+|   2 | simran |     20 |     9 |   25 |
+|   1 | Shreya |     10 |     8 |   23 |
+|   3 | Saloni |     30 |    10 |   20 |
+|   4 | Rahul  |     40 |    10 |   23 |
++-----+--------+--------+-------+------+
+5 rows in set (0.00 sec)
+
+mysql> select * from employee order by ename asc , deptid desc;
++-----+--------+--------+-------+------+
+| eid | ename  | deptid | mgrid | age  |
++-----+--------+--------+-------+------+
+|   4 | Rahul  |     40 |    10 |   23 |
+|   3 | Saloni |     30 |    10 |   20 |
+|   1 | Shreya |     10 |     8 |   23 |
+|   2 | simran |     20 |     9 |   25 |
+|   5 | Sonal  |     20 |     2 |   19 |
++-----+--------+--------+-------+------+
+5 rows in set (0.00 sec)
+
+
+
+9)INSERT INTO
+
+mysql> insert into employee values(6,"Krati",10,3,34);
+Query OK, 1 row affected (0.04 sec)
+
+
+10)IS NOT NULL
+
+mysql> select ename,age from employee where age is not null;
++--------+------+
+| ename  | age  |
++--------+------+
+| Shreya |   23 |
+| simran |   25 |
+| Saloni |   20 |
+| Rahul  |   23 |
+| Sonal  |   19 |
+| Krati  |   34 |
++--------+------+
+6 rows in set (0.00 sec)
+
+
+11) IS NULL
+
+mysql> select ename,age from employee where age is null;
++-------+------+
+| ename | age  |
++-------+------+
+| Yash  | NULL |
++-------+------+
+1 row in set (0.00 sec)
+
+
+12)UPDATE
+
+mysql> update employee set deptid=40 where eid=3;
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from employee;
++-----+--------+--------+-------+------+
+| eid | ename  | deptid | mgrid | age  |
++-----+--------+--------+-------+------+
+|   1 | Shreya |     10 |     8 |   23 |
+|   2 | simran |     20 |     9 |   25 |
+|   3 | Saloni |     40 |    10 |   20 |
+|   4 | Rahul  |     40 |    10 |   23 |
+|   5 | Sonal  |     20 |     2 |   19 |
+|   6 | Krati  |     10 |     3 |   34 |
+|   7 | Yash   |     30 |     4 | NULL |
++-----+--------+--------+-------+------+
+7 rows in set (0.00 sec)
+
+
+13)DELETE 
+
+mysql> delete from employee where ename='Yash';
+Query OK, 1 row affected (0.02 sec)
+
+mysql> select * from employee;
++-----+--------+--------+-------+------+
+| eid | ename  | deptid | mgrid | age  |
++-----+--------+--------+-------+------+
+|   1 | Shreya |     10 |     8 |   23 |
+|   2 | simran |     20 |     9 |   25 |
+|   3 | Saloni |     40 |    10 |   20 |
+|   4 | Rahul  |     40 |    10 |   23 |
+|   5 | Sonal  |     20 |     2 |   19 |
+|   6 | Krati  |     10 |     3 |   34 |
++-----+--------+--------+-------+------+
+6 rows in set (0.00 sec)
+
+
+14)LIMIT 
+
+mysql> select * from employee limit 3;
++-----+--------+--------+-------+------+
+| eid | ename  | deptid | mgrid | age  |
++-----+--------+--------+-------+------+
+|   1 | Shreya |     10 |     8 |   23 |
+|   2 | simran |     20 |     9 |   25 |
+|   3 | Saloni |     40 |    10 |   20 |
++-----+--------+--------+-------+------+
+3 rows in set (0.00 sec)
+
+mysql> select * from employee limit 1,3;
++-----+--------+--------+-------+------+
+| eid | ename  | deptid | mgrid | age  |
++-----+--------+--------+-------+------+
+|   2 | simran |     20 |     9 |   25 |
+|   3 | Saloni |     40 |    10 |   20 |
+|   4 | Rahul  |     40 |    10 |   23 |
++-----+--------+--------+-------+------+
+3 rows in set (0.00 sec)
+
+
+15) MIN , MAX
+
+mysql> select max(deptid) from employee;
++-------------+
+| max(deptid) |
++-------------+
+|          40 |
++-------------+
+1 row in set (0.00 sec)
+
+mysql> select min(deptid) from employee;
++-------------+
+| min(deptid) |
++-------------+
+|          10 |
++-------------+
+1 row in set (0.00 sec)
+
+
+16)COUNT , AVG , SUM
+
+mysql> select count(deptid) from employee where deptid>10;
++---------------+
+| count(deptid) |
++---------------+
+|             4 |
++---------------+
+1 row in set (0.00 sec)
+
+mysql> select avg(deptid) from employee;
++-------------+
+| avg(deptid) |
++-------------+
+|     23.3333 |
++-------------+
+1 row in set (0.00 sec)
+
+mysql> select sum(deptid) from employee;
++-------------+
+| sum(deptid) |
++-------------+
+|         140 |
++-------------+
+1 row in set (0.00 sec)
+
+
+17)LIKE
+
+mysql> select * from employee where ename like 's_r%';
++-----+--------+--------+-------+------+
+| eid | ename  | deptid | mgrid | age  |
++-----+--------+--------+-------+------+
+|   1 | Shreya |     10 |     8 |   23 |
++-----+--------+--------+-------+------+
+1 row in set (0.00 sec)
+
+
+18)IN
+
+mysql> select * from employee where deptid in(10,20,30);
++-----+--------+--------+-------+------+
+| eid | ename  | deptid | mgrid | age  |
++-----+--------+--------+-------+------+
+|   1 | Shreya |     10 |     8 |   23 |
+|   6 | Krati  |     10 |     3 |   34 |
+|   2 | simran |     20 |     9 |   25 |
+|   5 | Sonal  |     20 |     2 |   19 |
++-----+--------+--------+-------+------+
+4 rows in set (0.00 sec)
+
+
+19)BETWEEN
+
+mysql> select * from employee where deptid between 10 and 30;
++-----+--------+--------+-------+------+
+| eid | ename  | deptid | mgrid | age  |
++-----+--------+--------+-------+------+
+|   1 | Shreya |     10 |     8 |   23 |
+|   6 | Krati  |     10 |     3 |   34 |
+|   2 | simran |     20 |     9 |   25 |
+|   5 | Sonal  |     20 |     2 |   19 |
++-----+--------+--------+-------+------+
+4 rows in set (0.00 sec)
+
+mysql> select * from employee where deptid not between 10 and 30;
++-----+--------+--------+-------+------+
+| eid | ename  | deptid | mgrid | age  |
++-----+--------+--------+-------+------+
+|   3 | Saloni |     40 |    10 |   20 |
+|   4 | Rahul  |     40 |    10 |   23 |
++-----+--------+--------+-------+------+
+2 rows in set (0.00 sec)
+
+
+20)ALIAS
+
+mysql> select ename as nameofemployee from employee;
++----------------+
+| nameofemployee |
++----------------+
+| Krati          |
+| Rahul          |
+| Saloni         |
+| Shreya         |
+| simran         |
+| Sonal          |
++----------------+
+6 rows in set (0.00 sec)
+
+21)CONCAT
+
+mysql> select concat(ename,',',deptid) from employee;
++--------------------------+
+| concat(ename,',',deptid) |
++--------------------------+
+| Shreya,10                |
+| simran,20                |
+| Saloni,40                |
+| Rahul,40                 |
+| Sonal,20                 |
+| Krati,10                 |
++--------------------------+
+6 rows in set (0.00 sec)
+
+22)UNION
+
+mysql> select deptid from employee union select deptid from department;
++--------+
+| deptid |
++--------+
+|     10 |
+|     20 |
+|     40 |
+|     30 |
++--------+
+4 rows in set (0.00 sec)
+
+mysql> select deptid from employee union all select deptid from department;
++--------+
+| deptid |
++--------+
+|     10 |
+|     10 |
+|     20 |
+|     20 |
+|     40 |
+|     40 |
+|     10 |
+|     20 |
+|     30 |
+|     40 |
++--------+
+10 rows in set (0.00 sec)
+
+23)GROUP BY
+
+mysql> select count(ename) from employee group by deptid;
++--------------+
+| count(ename) |
++--------------+
+|            2 |
+|            2 |
+|            2 |
++--------------+
+3 rows in set (0.00 sec)
+
+24)HAVING
+
+
+mysql> select count(ename),deptid from employee group by deptid having deptid>15;
++--------------+--------+
+| count(ename) | deptid |
++--------------+--------+
+|            2 |     20 |
+|            2 |     40 |
++--------------+--------+
+2 rows in set (0.00 sec)
+
+
+25) EXISTS
+
+mysql> select ename,deptid from employee where exists(select ename from employee where mgrid>5);
++--------+--------+
+| ename  | deptid |
++--------+--------+
+| Shreya |     10 |
+| simran |     20 |
+| Saloni |     40 |
+| Rahul  |     40 |
+| Sonal  |     20 |
+| Krati  |     10 |
++--------+--------+
+6 rows in set (0.00 sec)
+
+
+26)ANY , ALL
+
+mysql> select ename , deptid from employee where deptid > any(select mgrid from employee where mgrid>9);
++--------+--------+
+| ename  | deptid |
++--------+--------+
+| simran |     20 |
+| Saloni |     40 |
+| Rahul  |     40 |
+| Sonal  |     20 |
++--------+--------+
+4 rows in set (0.00 sec)
+
+
+mysql> select ename,deptid from employee where deptid> all(select age from employee);
++--------+--------+
+| ename  | deptid |
++--------+--------+
+| Saloni |     40 |
+| Rahul  |     40 |
++--------+--------+
+2 rows in set (0.00 sec)
+
+
+27)COMMENTS
+
+mysql> /*Comments are mentioned in this form*/
+
+
+28)SELECT INTO
+
+//MYSQL DOES NOT SUPPORT SELECT INTO
+mysql> SELECT * INTO NEWEMPLOYEE from employee where deptid>20;
+ERROR 1327 (42000): Undeclared variable: NEWEMPLOYEE
+
+
+29)INSERT INTO SELECT
+
+mysql> INSERT INTO EMPL(EID,ENAME)SELECT EID,ENAME FROM EMPLOYEE WHERE DEPTID>10;
+Query OK, 4 rows affected (0.02 sec)
+Records: 4  Duplicates: 0  Warnings: 0
+
+mysql> SELECT * FROM EMPL;
++-----+--------+
+| eid | ename  |
++-----+--------+
+|   2 | simran |
+|   3 | Saloni |
+|   4 | Rahul  |
+|   5 | Sonal  |
++-----+--------+
+4 rows in set (0.00 sec)
+
+
+30)CASE
+
+mysql> select ename,deptid ,case
+    -> when deptid>20 then 'THE DEPTID IS GREATER THEN 20'
+    -> when deptid=10 then 'The deptid id 10'
+    -> else 'The deptid is 0'
+    -> end as deptiddetails
+    -> from employee;
++--------+--------+-------------------------------+
+| ename  | deptid | deptiddetails                 |
++--------+--------+-------------------------------+
+| Shreya |     10 | The deptid id 10              |
+| simran |     20 | The deptid is 0               |
+| Saloni |     40 | THE DEPTID IS GREATER THEN 20 |
+| Rahul  |     40 | THE DEPTID IS GREATER THEN 20 |
+| Sonal  |     20 | The deptid is 0               |
+| Krati  |     10 | The deptid id 10              |
++--------+--------+-------------------------------+
+6 rows in set (0.00 sec)
+
+
+31)IFNULL ,ISNULL(NEED TO DO)
+
+mysql> select ename,deptid, ifnull(age,0) from employee;
++--------+--------+---------------+
+| ename  | deptid | ifnull(age,0) |
++--------+--------+---------------+
+| Shreya |     10 |            23 |
+| simran |     20 |            25 |
+| Saloni |     40 |            20 |
+| Rahul  |     40 |            23 |
+| Sonal  |     20 |            19 |
+| Krati  |     10 |            34 |
+| Harini |     30 |             0 |
++--------+--------+---------------+
+7 rows in set (0.00 sec)
+
+32)INNER JOIN
+
+mysql> select employee.ename,employee.deptid from employee inner join department on employee.deptid=department.deptid;
++--------+--------+
+| ename  | deptid |
++--------+--------+
+| Shreya |     10 |
+| Krati  |     10 |
+| simran |     20 |
+| Sonal  |     20 |
+| Harini |     30 |
+| Saloni |     40 |
+| Rahul  |     40 |
++--------+--------+
+7 rows in set (0.00 sec)
+
+33)FULL OUTER JOIN
+
+//MYSQL does not support full outer join
+mysql> select employee.ename , employee.deptid from employee full join department on employee.deptid=department.deptid;
+ERROR 1054 (42S22): Unknown column 'employee.ename' in 'field list'
+
+34)RIGHT JOIN
+
+mysql> SELECT EMPLOYEE.ENAME,DEPARTMENT.DEPTID FROM EMPLOYEE RIGHT JOIN DEPARTMENT ON EMPLOYEE.DEPTID=DEPARTMENT.DEPTID;
++--------+--------+
+| ENAME  | DEPTID |
++--------+--------+
+| Shreya |     10 |
+| Krati  |     10 |
+| simran |     20 |
+| Sonal  |     20 |
+| Harini |     30 |
+| Saloni |     40 |
+| Rahul  |     40 |
+| NULL   |     50 |
++--------+--------+
+8 rows in set (0.00 sec)
+
+
+35)LEFT JOIN
+
+mysql> SELECT EMPLOYEE.ENAME,DEPARTMENT.DEPTID FROM EMPLOYEE LEFT JOIN DEPARTMENT ON EMPLOYEE.DEPTID=DEPARTMENT.DEPTID;
++--------+--------+
+| ENAME  | DEPTID |
++--------+--------+
+| Shreya |     10 |
+| simran |     20 |
+| Saloni |     40 |
+| Rahul  |     40 |
+| Sonal  |     20 |
+| Krati  |     10 |
+| Harini |     30 |
++--------+--------+
+7 rows in set (0.00 sec)
+
+
+36)SELF JOIN
+
+mysql> select a.ename as name , b.ename as name from employee a , employee b where a.ename!=b.ename and a.deptid=b.deptid;
++--------+--------+
+| name   | name   |
++--------+--------+
+| Shreya | Krati  |
+| simran | Sonal  |
+| Saloni | Rahul  |
+| Rahul  | Saloni |
+| Sonal  | simran |
+| Krati  | Shreya |
++--------+--------+
+6 rows in set (0.00 sec)
+
+
+
+
+
+
+1) CREATE DATABASE
+
+mysql> CREATE DATABASE W3SchoolPractice;
+Query OK, 1 row affected (0.02 sec)
+
+2)DROP DATABASE
+
+mysql> drop database W3SchoolPractice;
+Query OK, 0 rows affected (0.03 sec)
+
+3)BACKUP
+
+
+4)CREATE TABLE
+
+mysql> create table demo_student(sid int primary key,sname varchar(20),scity varchar(20));
+Query OK, 0 rows affected (0.10 sec)
+
+5)DROP TABLE
+
+mysql> drop table demo_student;
+Query OK, 0 rows affected (0.04 sec)
+
+
+6)TRUNCATE TABLE
+
+mysql> create table demo_student(sid int primary key,sname varchar(20),scity varchar(20));
+Query OK, 0 rows affected (0.07 sec)
+
+mysql> insert into demo_student values(1,"Shreya","Dewas");
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into demo_student values(2,"Krati","Betul");
+Query OK, 1 row affected (0.01 sec)
+
+mysql> truncate table demo_student;
+Query OK, 0 rows affected (0.10 sec)
+
+mysql> desc demo_student;
++-------+-------------+------+-----+---------+-------+
+| Field | Type        | Null | Key | Default | Extra |
++-------+-------------+------+-----+---------+-------+
+| sid   | int         | NO   | PRI | NULL    |       |
+| sname | varchar(20) | YES  |     | NULL    |       |
+| scity | varchar(20) | YES  |     | NULL    |       |
++-------+-------------+------+-----+---------+-------+
+3 rows in set (0.01 sec)
+
+
+7)Alter Table
+
+mysql> alter table demo_student add subject varchar(20);
+Query OK, 0 rows affected (0.04 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc student;
++---------+-------------+------+-----+----------+----------------+
+| Field   | Type        | Null | Key | Default  | Extra          |
++---------+-------------+------+-----+----------+----------------+
+| s_id    | int         | NO   | PRI | NULL     | auto_increment |
+| s_name  | varchar(40) | YES  |     | NULL     |                |
+| address | varchar(40) | YES  |     | NULL     |                |
+| age     | int         | YES  |     | NULL     |                |
+| email   | varchar(60) | YES  |     | NULL     |                |
+| subject | varchar(50) | YES  |     | sanskrit |                |
++---------+-------------+------+-----+----------+----------------+
+6 rows in set (0.00 sec)
+
+
+8)Constraints
+
+mysql> alter table demo_student modify subject varchar(20) default 'History';
+Query OK, 0 rows affected (0.02 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> alter table demo_student add age int check(age>20);
+Query OK, 0 rows affected (0.16 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> insert into demo_student(sid,age) values(1,15);
+ERROR 3819 (HY000): Check constraint 'demo_student_chk_1' is violated.
+
+
+9)NOT NULL
+
+mysql> alter table student modify age int not null;
+Query OK, 0 rows affected (0.15 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+
+10)UNIQUE
+
+mysql> alter table demo_student add unique(sid);
+Query OK, 0 rows affected (0.05 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+11)Primary Key
+
+mysql> create table demo_student(sid int primary key,sname varchar(20),scity varchar(20));
+Query OK, 0 rows affected (0.10 sec)
+
+
+12)Foreign Key
+
+mysql> create table address(addid int primary key,address varchar(20),lane varchar(20),sid int, foreign key(sid) references demo_student(sid));
+Query OK, 0 rows affected (0.08 sec)
+
+mysql> desc address;
++---------+-------------+------+-----+---------+-------+
+| Field   | Type        | Null | Key | Default | Extra |
++---------+-------------+------+-----+---------+-------+
+| addid   | int         | NO   | PRI | NULL    |       |
+| address | varchar(20) | YES  |     | NULL    |       |
+| lane    | varchar(20) | YES  |     | NULL    |       |
+| sid     | int         | YES  | MUL | NULL    |       |
++---------+-------------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+
+
+13)Check
+
+mysql> alter table demo_student add age int check(age>20);
+Query OK, 0 rows affected (0.16 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> insert into demo_student(sid,age) values(1,15);
+ERROR 3819 (HY000): Check constraint 'demo_student_chk_1' is violated.
+
+
+14)DEFAULT
+
+mysql> alter table demo_student modify subject varchar(20) default 'History';
+Query OK, 0 rows affected (0.02 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+15)INDEX
+
+mysql> CREATE INDEX INDEX_ID ON DEMO_STUDENT(SID);
+Query OK, 0 rows affected (0.05 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> drop index index_id on demo_student;
+Query OK, 0 rows affected (0.03 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+16)Auto Increment
+
+mysql> alter table demo_student modify sid int auto_increment;
+Query OK, 0 rows affected (0.19 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc demo_student;
++---------+-------------+------+-----+---------+----------------+
+| Field   | Type        | Null | Key | Default | Extra          |
++---------+-------------+------+-----+---------+----------------+
+| sid     | int         | NO   | PRI | NULL    | auto_increment |
+| sname   | varchar(20) | YES  |     | NULL    |                |
+| scity   | varchar(20) | YES  |     | NULL    |                |
+| subject | varchar(20) | YES  |     | History |                |
+| age     | int         | YES  |     | NULL    |                |
++---------+-------------+------+-----+---------+----------------+
+5 rows in set (0.00 sec)
+
+
+17)DATES
+
+mysql> alter table demo_student add birthdate date;
+Query OK, 0 rows affected (0.06 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> select * from demo_student;
+Empty set (0.00 sec)
+
+mysql> insert into demo_student values(1,"Shreya","Dewas","CSE",'2001-03-27');
+ERROR 1136 (21S01): Column count doesn't match value count at row 1
+mysql> desc demo_student;
++-----------+-------------+------+-----+---------+----------------+
+| Field     | Type        | Null | Key | Default | Extra          |
++-----------+-------------+------+-----+---------+----------------+
+| sid       | int         | NO   | PRI | NULL    | auto_increment |
+| sname     | varchar(20) | YES  |     | NULL    |                |
+| scity     | varchar(20) | YES  |     | NULL    |                |
+| subject   | varchar(20) | YES  |     | History |                |
+| age       | int         | YES  |     | NULL    |                |
+| birthdate | date        | YES  |     | NULL    |                |
++-----------+-------------+------+-----+---------+----------------+
+6 rows in set (0.00 sec)
+
+mysql> insert into demo_student values(1,"Shreya","Dewas","CSE",21,'2001-03-27');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from demo_student;
++-----+--------+-------+---------+------+------------+
+| sid | sname  | scity | subject | age  | birthdate  |
++-----+--------+-------+---------+------+------------+
+|   1 | Shreya | Dewas | CSE     |   21 | 2001-03-27 |
++-----+--------+-------+---------+------+------------+
+1 row in set (0.00 sec)
+
+mysql> select * from demo_student where birthdate='2001-03-27';
++-----+--------+-------+---------+------+------------+
+| sid | sname  | scity | subject | age  | birthdate  |
++-----+--------+-------+---------+------+------------+
+|   1 | Shreya | Dewas | CSE     |   21 | 2001-03-27 |
++-----+--------+-------+---------+------+------------+
+1 row in set (0.00 sec)
+
+
+18)VIEWS
+
+mysql> create view v9 as select sid,sname,scity from demo_student;
+Query OK, 0 rows affected (0.02 sec)
+
+
+
+
+
+

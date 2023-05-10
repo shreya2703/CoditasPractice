@@ -1,0 +1,412 @@
+ENCAPSULATION
+
+
+class Student{
+    //private variables
+    private int id;
+    private String name,city;
+    private float percentage;
+
+    //public methods: getters and setters
+
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public float getPercentage() {
+        return percentage;
+    }
+
+    public void setPercentage(float percentage) {
+        this.percentage = percentage;
+    }
+
+    @Override
+    public String toString() {
+        return "Student{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", city='" + city + '\'' +
+                ", percentage=" + percentage +
+                '}';
+    }
+}
+public class Encapsulation {
+    public static void main(String[] args) {
+
+        Student student = new Student();
+        //System.out.println(student); This will give the memory address of the student object without to string
+        System.out.println(student);
+        student.setId(121);
+        student.setName("Coditas");
+        student.setCity("Pune");
+        student.setPercentage(87.5f);
+        System.out.println(student);
+        System.out.println(student.getId());
+
+    }
+}
+
+
+======================================================================================
+
+
+INHERITANCE
+
+
+class Parent{
+    int drivingLicenceId=121;
+    public void displayData(){
+        System.out.println("Parent driving licence id "+ drivingLicenceId);
+    }
+}
+
+
+class Child extends Parent{
+    int aadharCardId=131;
+    public void displayData(){
+
+        super.drivingLicenceId=128; //this will change the value in parent class also
+        super.displayData(); //super class help to achieve parent class property in child
+        System.out.println("Child Aadhar id "+ aadharCardId);
+        System.out.println("Child driving licence id "+ drivingLicenceId);
+        drivingLicenceId=132;   //without super also value can get update in this
+
+        System.out.println("Child driving licence id "+ drivingLicenceId);
+
+    }
+}
+
+
+public class InheritanceDemo {
+
+    public static void main(String[] args){
+        Child child = new Child();
+        child.displayData();
+
+       //Parent parent = new Parent();    //this is not reuseability of code
+        //parent.displayData();
+
+    }
+}
+
+
+=========================================================================================================
+
+
+ABSTRACTION
+
+
+abstract class Shape{
+    public abstract void area();
+
+    //concrete method
+    public void display(){
+        System.out.println("this is shape class display");
+    }
+}
+
+
+class Circle extends Shape{
+
+    public void area(){
+        System.out.println("Circle class area");
+    }
+
+}
+public class ShapeDemo {
+
+    public static void main(String[] args){
+        Circle circle = new Circle();
+        circle.area();
+        circle.display();
+
+    }
+
+
+}
+
+
+
+=========================================================================================================
+
+INTERFACE
+
+
+interface  Animal{
+    int numberOfLegs=12;
+    void Eat();
+}
+class Rectangle implements ShapeInterface{
+    int length,breadth,area;
+    @Override
+    public void area() {
+        area=length*breadth;
+    }
+​
+    @Override
+    public void display() {
+​
+        ShapeInterface.super.display();
+        System.out.println("Area of rectangle : "+area);
+    }
+}
+public class InterfaceDemo {
+    public static void main(String args[]) {
+        Rectangle rectangle=new Rectangle();
+        rectangle.length=45;
+        rectangle.breadth=50;
+        rectangle.area();
+​
+        rectangle.display();
+        ShapeInterface.show();
+    }
+}
+
+
+
+
+public interface ShapeInterface {
+    void area();
+    default void display(){
+        System.out.println("Default ");
+    }
+    static void show(){
+        System.out.println("show ");
+    }
+}
+
+
+
+==========================================================================================================
+
+AGGREGATION
+
+
+
+class Employee{
+    Address address;
+    int id;
+    String name;
+
+    public Employee(Address address, int id, String name) {
+
+        this.address = address;
+        this.id = id;
+        this.name = name;
+    }
+
+    @Override
+    public String toString() {
+        return "Employee{" +
+                "address=" + address +
+                ", id=" + id +
+                ", name='" + name + '\'' +
+                '}';
+    }
+}
+public class AggregationDemo {
+    public static void main(String[] args){
+        //Independent Entity
+        Address address1 = new Address(12,101,455001,"Shakuntala",
+                "Punekar","Pune","Maharashtra","India");
+
+        //dependentEntity
+        Employee employee1 = new Employee(address1,12,"Coditas");
+    }
+}
+
+
+
+
+
+public class Address {
+    int pno,fno,pincode;  //yeh private bhi karr sakte hai
+    String hname,area,city,state,country;
+
+
+
+    //argument constructor or parameterised constructor
+
+
+    public Address(int pno, int fno, int pincode, String hname, String area, String city, String state, String country) {
+        this.pno = pno;
+        this.fno = fno;
+        this.pincode = pincode;
+        this.hname = hname;
+        this.area = area;
+        this.city = city;
+        this.state = state;
+        this.country = country;
+    }
+
+    @Override
+    public String toString() {
+        return "Address{" +
+                "pno=" + pno +
+                ", fno=" + fno +
+                ", pincode=" + pincode +
+                ", hname='" + hname + '\'' +
+                ", area='" + area + '\'' +
+                ", city='" + city + '\'' +
+                ", state='" + state + '\'' +
+                ", country='" + country + '\'' +
+                '}';
+    }
+}
+
+
+
+
+
+=====================================================================================================================================
+
+
+VARARGS
+
+
+class Addition{
+    public void add(int a,int b){
+        int sum = a+b;
+        System.out.println(sum);
+    }
+
+    public void add(int a,int b,int c){
+        int sum = a+b+c;
+        System.out.println(sum);
+    }
+}
+
+class Varargs_Addition{
+    public int sum(int ...arr){
+        int result =0;
+        for(int a: arr){
+            result +=a;
+        }
+        return result;
+    }
+}
+public class Que5 {
+    public static void main(String[] args){
+        Addition addition = new Addition();
+        addition.add(2,3);
+        addition.add(3,6,7);
+        Varargs_Addition vargs = new Varargs_Addition();
+        System.out.println(vargs.sum(1,2,3));
+        System.out.println(vargs.sum(1,2,3,4,6,8));
+
+    }
+
+
+}
+
+
+
+
+===================================================================================================
+
+class Employee{
+
+    int hrs;
+    int rate;
+
+
+
+    public void computeSalary(){
+        int salary = hrs*rate ;
+        System.out.println(salary);
+    }
+}
+
+class WageEmployee extends Employee{
+      WageEmployee(int hrs,int rate){
+
+        super.hrs=hrs;
+        super.rate=rate;
+        super.computeSalary();
+
+    }
+
+}
+class SalesPerson extends WageEmployee{
+    int sales;
+    int commision;
+    SalesPerson(int slaes,int commision,int hrs,int rate){
+        super(hrs,rate);
+        this.sales = slaes;
+        this.commision = commision;
+    }
+    public void computeSalary(){
+        System.out.println(sales*commision*hrs*rate);
+    }
+
+
+}
+
+class Manager extends Employee{
+    int fixedSalary;
+    int incentives;
+    public void computeSalary(){
+        int salary=fixedSalary*incentives ;
+        System.out.println(salary);
+
+    }
+}
+
+
+
+
+
+public class Que1 {
+    public static void main(String[] args) {
+        //WageEmployee we = new WageEmployee(9,20);
+
+
+        SalesPerson sp = new SalesPerson(9, 10, 15, 20);
+        sp.computeSalary();
+
+        Manager m = new Manager();
+        m.fixedSalary = 30;
+        m.incentives = 100;
+        m.computeSalary();
+
+        Employee[] employee = new Employee[1];
+        employee[0] = new Employee();
+        employee[0].hrs = 6;
+        employee[0].rate = 10;
+        employee[0].computeSalary();
+
+
+
+    }
+}
+
+
+========================================================================================
+
+
+
+
+
+

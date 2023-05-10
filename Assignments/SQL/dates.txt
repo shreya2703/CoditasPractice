@@ -1,0 +1,175 @@
+mysql> use practice;
+Database changed
+mysql> create table demo_dates(eid int primary key,ename varchar(20),hiredate date);
+Query OK, 0 rows affected (0.09 sec)
+
+mysql> alter table demo_dates add salary int;
+Query OK, 0 rows affected (0.05 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc demo_dates;
++----------+-------------+------+-----+---------+-------+
+| Field    | Type        | Null | Key | Default | Extra |
++----------+-------------+------+-----+---------+-------+
+| eid      | int         | NO   | PRI | NULL    |       |
+| ename    | varchar(20) | YES  |     | NULL    |       |
+| hiredate | date        | YES  |     | NULL    |       |
+| salary   | int         | YES  |     | NULL    |       |
++----------+-------------+------+-----+---------+-------+
+4 rows in set (0.01 sec)
+
+mysql> insert into demo_dates(eid,ename,hiredate,salary) values(1,"Shreya",'2022-12-01',20000),(2,"Krati",'2023-09-23',30000),(3,"Harini",'2022-11-06',40000),(4,"Palak",'2023-12-05',25000);
+Query OK, 4 rows affected (0.01 sec)
+Records: 4  Duplicates: 0  Warnings: 0
+
+mysql> insert into demo_dates values(5,"Harhit",'2023-14-6',30000);
+ERROR 1292 (22007): Incorrect date value: '2023-14-6' for column 'hiredate' at row 1
+mysql> insert into demo_dates values(5,"Harhit",'2023-04-6',30000);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from demo_dates;
++-----+--------+------------+--------+
+| eid | ename  | hiredate   | salary |
++-----+--------+------------+--------+
+|   1 | Shreya | 2022-12-01 |  20000 |
+|   2 | Krati  | 2023-09-23 |  30000 |
+|   3 | Harini | 2022-11-06 |  40000 |
+|   4 | Palak  | 2023-12-05 |  25000 |
+|   5 | Harhit | 2023-04-06 |  30000 |
++-----+--------+------------+--------+
+5 rows in set (0.00 sec)
+
+mysql> select ename, hiredate-curdate as workedyears from employee;
+ERROR 1054 (42S22): Unknown column 'hiredate' in 'field list'
+mysql> select ename,hiredate-curdate as workedyears from demo_dates;
+ERROR 1054 (42S22): Unknown column 'curdate' in 'field list'
+mysql> select ename,hiredate-curdate() as workedyears from demo_dates;
++--------+-------------+
+| ename  | workedyears |
++--------+-------------+
+| Shreya |       -8927 |
+| Krati  |         795 |
+| Harini |       -9022 |
+| Palak  |        1077 |
+| Harhit |         278 |
++--------+-------------+
+5 rows in set (0.00 sec)
+
+mysql> select ename,('2023-12-13'-hiredate) as workeddays from edemo_dates;
+ERROR 1146 (42S02): Table 'practice.edemo_dates' doesn't exist
+mysql> select ename,('2023-12-13'-hiredate) as workeddays from demo_dates;
++--------+------------+
+| ename  | workeddays |
++--------+------------+
+| Shreya |  -20219178 |
+| Krati  |  -20228900 |
+| Harini |  -20219083 |
+| Palak  |  -20229182 |
+| Harhit |  -20228383 |
++--------+------------+
+5 rows in set, 5 warnings (0.00 sec)
+
+mysql> select ename,curdate()-hiredate as workedyears from demo_dates;
++--------+-------------+
+| ename  | workedyears |
++--------+-------------+
+| Shreya |        8927 |
+| Krati  |        -795 |
+| Harini |        9022 |
+| Palak  |       -1077 |
+| Harhit |        -278 |
++--------+-------------+
+5 rows in set (0.00 sec)
+
+mysql> select now();
++---------------------+
+| now()               |
++---------------------+
+| 2023-01-28 12:34:32 |
++---------------------+
+1 row in set (0.00 sec)
+
+mysql> select curtime();
++-----------+
+| curtime() |
++-----------+
+| 12:34:46  |
++-----------+
+1 row in set (0.00 sec)
+
+mysql> select ename, extract(year from hiredate) as hiredyear from demo_dates;
++--------+-----------+
+| ename  | hiredyear |
++--------+-----------+
+| Shreya |      2022 |
+| Krati  |      2023 |
+| Harini |      2022 |
+| Palak  |      2023 |
+| Harhit |      2023 |
++--------+-----------+
+5 rows in set (0.00 sec)
+
+mysql> select ename,extract(year from hiredate)-curdate as hiredyear from demo_dates;
+ERROR 1054 (42S22): Unknown column 'curdate' in 'field list'
+mysql> select ename,extract(year from hiredate)-curdate() as hiredyear from demo_dates;
++--------+-----------+
+| ename  | hiredyear |
++--------+-----------+
+| Shreya | -20228106 |
+| Krati  | -20228105 |
+| Harini | -20228106 |
+| Palak  | -20228105 |
+| Harhit | -20228105 |
++--------+-----------+
+5 rows in set (0.00 sec)
+
+mysql> select datediff('2023-09-12','2022-06-30');
++-------------------------------------+
+| datediff('2023-09-12','2022-06-30') |
++-------------------------------------+
+|                                 439 |
++-------------------------------------+
+1 row in set (0.00 sec)
+
+
+mysql> select ename,date_add(hiredate,interval 26 day) as newdate from demo_dates;
++--------+------------+
+| ename  | newdate    |
++--------+------------+
+| Shreya | 2022-12-27 |
+| Krati  | 2023-10-19 |
+| Harini | 2022-12-02 |
+| Palak  | 2023-12-31 |
+| Harhit | 2023-05-02 |
++--------+------------+
+5 rows in set (0.00 sec)
+
+
+
+mysql> select ename,date_format(hiredate,'%d %b %y') as hireddate from demo_dates;
++--------+-----------+
+| ename  | hireddate |
++--------+-----------+
+| Shreya | 01 Dec 22 |
+| Krati  | 23 Sep 23 |
+| Harini | 06 Nov 22 |
+| Palak  | 05 Dec 23 |
+| Harhit | 06 Apr 23 |
++--------+-----------+
+5 rows in set (0.00 sec)
+
+
+mysql> select ename,quarter(hiredate) from demo_dates;
++--------+-------------------+
+| ename  | quarter(hiredate) |
++--------+-------------------+
+| Shreya |                 4 |
+| Krati  |                 3 |
+| Harini |                 4 |
+| Palak  |                 4 |
+| Harhit |                 2 |
++--------+-------------------+
+5 rows in set (0.00 sec)
+
+
+

@@ -1,0 +1,128 @@
+Coditas@5498-lap-0185 MINGW64 ~/IdeaProjects/GitHub
+$ git init
+Initialized empty Git repository in C:/Users/Coditas/IdeaProjects/GitHub/.git/
+
+Coditas@5498-lap-0185 MINGW64 ~/IdeaProjects/GitHub (master)
+$ git status
+On branch master
+
+No commits yet
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+        .idea/
+        pom.xml
+        src/
+        target/
+
+nothing added to commit but untracked files present (use "git add" to track)
+
+Coditas@5498-lap-0185 MINGW64 ~/IdeaProjects/GitHub (master)
+$ git add .
+
+Coditas@5498-lap-0185 MINGW64 ~/IdeaProjects/GitHub (master)
+$ git status
+On branch master
+
+No commits yet
+
+Changes to be committed:
+  (use "git rm --cached <file>..." to unstage)
+        new file:   .idea/.gitignore
+        new file:   .idea/compiler.xml
+        new file:   .idea/encodings.xml
+        new file:   .idea/jarRepositories.xml
+        new file:   .idea/misc.xml
+        new file:   pom.xml
+        new file:   src/main/java/Hello.java
+        new file:   src/main/webapp/WEB-INF/web.xml
+        new file:   src/main/webapp/index.jsp
+        new file:   src/main/webapp/welcomePage.html
+        new file:   target/classes/Hello.class
+
+
+Coditas@5498-lap-0185 MINGW64 ~/IdeaProjects/GitHub (master)
+$ git commit -m "Project uploaded"
+[master (root-commit) 38e7386] Project uploaded
+ 11 files changed, 186 insertions(+)
+ create mode 100644 .idea/.gitignore
+ create mode 100644 .idea/compiler.xml
+ create mode 100644 .idea/encodings.xml
+ create mode 100644 .idea/jarRepositories.xml
+ create mode 100644 .idea/misc.xml
+ create mode 100644 pom.xml
+ create mode 100644 src/main/java/Hello.java
+ create mode 100644 src/main/webapp/WEB-INF/web.xml
+ create mode 100644 src/main/webapp/index.jsp
+ create mode 100644 src/main/webapp/welcomePage.html
+ create mode 100644 target/classes/Hello.class
+
+Coditas@5498-lap-0185 MINGW64 ~/IdeaProjects/GitHub (master)
+$ git config --global user.name "Shreya Kalluraya"
+git config --global user.email "shreya.kalluraya@coditas.com"
+
+Coditas@5498-lap-0185 MINGW64 ~/IdeaProjects/GitHub (master)
+$ git remote add origin https://gitlab.com/java7180915/Shreya-Kalluraya.git
+
+Coditas@5498-lap-0185 MINGW64 ~/IdeaProjects/GitHub (master)
+$ git push -u origin main
+error: src refspec main does not match any
+error: failed to push some refs to 'https://gitlab.com/java7180915/Shreya-Kalluraya.git'
+
+Coditas@5498-lap-0185 MINGW64 ~/IdeaProjects/GitHub (master)
+$ git status
+On branch master
+nothing to commit, working tree clean
+
+Coditas@5498-lap-0185 MINGW64 ~/IdeaProjects/GitHub (master)
+$ git push -u origin
+fatal: The current branch master has no upstream branch.
+To push the current branch and set the remote as upstream, use
+
+    git push --set-upstream origin master
+
+To have this happen automatically for branches without a tracking
+upstream, see 'push.autoSetupRemote' in 'git help config'.
+
+
+Coditas@5498-lap-0185 MINGW64 ~/IdeaProjects/GitHub (master)
+$  git push --set-upstream origin master
+fatal: unable to access 'https://gitlab.com/java7180915/Shreya-Kalluraya.git/': SSL certificate problem: self signed certificate in certificate chain
+
+Coditas@5498-lap-0185 MINGW64 ~/IdeaProjects/GitHub (master)
+$ git config --global http.sslVerify false
+
+Coditas@5498-lap-0185 MINGW64 ~/IdeaProjects/GitHub (master)
+$ git push -u origin
+fatal: The current branch master has no upstream branch.
+To push the current branch and set the remote as upstream, use
+
+    git push --set-upstream origin master
+
+To have this happen automatically for branches without a tracking
+upstream, see 'push.autoSetupRemote' in 'git help config'.
+
+
+Coditas@5498-lap-0185 MINGW64 ~/IdeaProjects/GitHub (master)
+$ git push --set-upstream origin master
+warning: ----------------- SECURITY WARNING ----------------
+warning: | TLS certificate verification has been disabled! |
+warning: ---------------------------------------------------
+warning: HTTPS connections may not be secure. See https://aka.ms/gcm/tlsverify for more information.
+warning: ----------------- SECURITY WARNING ----------------
+warning: | TLS certificate verification has been disabled! |
+warning: ---------------------------------------------------
+warning: HTTPS connections may not be secure. See https://aka.ms/gcm/tlsverify for more information.
+warning: ----------------- SECURITY WARNING ----------------
+warning: | TLS certificate verification has been disabled! |
+warning: ---------------------------------------------------
+warning: HTTPS connections may not be secure. See https://aka.ms/gcm/tlsverify for more information.
+Enumerating objects: 21, done.
+Counting objects: 100% (21/21), done.
+Delta compression using up to 4 threads
+Compressing objects: 100% (15/15), done.
+Writing objects: 100% (21/21), 4.22 KiB | 432.00 KiB/s, done.
+Total 21 (delta 0), reused 0 (delta 0), pack-reused 0
+To https://gitlab.com/java7180915/Shreya-Kalluraya.git
+ * [new branch]      master -> master
+branch 'master' set up to track 'origin/master'.

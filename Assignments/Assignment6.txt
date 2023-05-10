@@ -1,0 +1,465 @@
+public class Que1 {
+    public static void main(String[] args) {
+
+        int number1=3;
+        if(number1>=0)
+            if(number1==0)
+                System.out.println("first");
+        else
+                System.out.println("second");
+        System.out.println("third");
+    }
+}
+
+
+OUTPUT
+
+second
+third
+
+Process finished with exit code 0
+
+
+=================================================================
+
+public class Que2 {
+    public static void main(String[] args) {
+
+        int number1=3;
+        if(number1>=0) {
+            if (number1 == 0)
+                System.out.println("first");
+            else
+                System.out.println("second");
+        }
+        System.out.println("third");
+    }
+}
+
+====================================================================
+
+
+public class Que3 {
+    public static void main(String[] args) {
+        int temperature = 3;
+        switch (temperature) {
+            case 1:
+                System.out.println("Low");
+                break;
+            case 2:
+                System.out.println("Medium");
+                break;
+            case 3:
+                System.out.println("High");
+                break;
+            default:
+                System.out.println("Abnormal");
+        }
+    }
+}
+
+OUTPUT
+
+High
+
+Process finished with exit code 0
+
+
+============================================================================================
+
+public class Que4 {
+    public static void main(String[] args) {
+        int m=1,x=0;
+        if(m==0) {
+            x=x+2;
+            System.out.println("X="+x);
+        }
+        else if(m==1){
+            x=x+4;
+            System.out.println("X="+x);
+        }
+        else if(m==2){
+            x=x+6;
+            System.out.println("X="+x);
+        }
+    }
+
+
+}
+
+
+OUTPUT
+
+X=4
+
+Process finished with exit code 0
+
+===================================================================
+
+import java.util.*;
+public class Que5 {
+    public static void main(String[] args) {
+        Scanner sc= new Scanner(System.in);
+        System.out.print("Enter first number::");
+        int number1= sc.nextInt();
+        System.out.print("Enter second number::");
+        int number2= sc.nextInt();
+        if(number1>number2)
+            System.out.println("The gretaer number is number1::"+number1);
+        else
+            System.out.println("The gretaer number is number2::"+number2);
+    }
+}
+
+
+
+
+OUTPUT
+
+Enter first number::23
+Enter second number::34
+The gretaer number is number2::34
+
+Process finished with exit code 0
+
+
+===============================================
+
+import java.util.*;
+
+public class Que6 {
+    public static void main(String[] args) {
+
+        Scanner sc= new Scanner(System.in);
+        System.out.print("Enter first person's age::");
+        int person1= sc.nextInt();
+        System.out.print("Enter second person's age::");
+        int person2= sc.nextInt();
+        System.out.print("Enter third person's age::");
+        int person3= sc.nextInt();
+
+        if(person1>person2 && person1>person3)
+            System.out.println("Oldest is first person whose age is::"+person1);
+        else if(person2>person1 && person2>person3)
+            System.out.println("Oldest is second person whose age is::"+person2);
+        else
+            System.out.println("Oldest is third person whose age is::"+person3);
+
+        if(person1<person2 && person1<person3)
+            System.out.println("Youngest is first person whose age is::"+person1);
+        else if(person2<person1 && person2<person3)
+            System.out.println("Youngest is second person whose age is::"+person2);
+        else
+            System.out.println("Youngest is third person whose age is::"+person3);
+
+
+    }
+}
+
+
+OUTPUT
+
+Enter first person's age::30
+Enter second person's age::23
+Enter third person's age::18
+Oldest is first person whose age is::30
+Youngest is third person whose age is::18
+
+Process finished with exit code 0
+
+
+===========================================================
+
+public class Que7a {
+
+    public static void main(String[] args) {
+        String days[]={"Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"};
+        for(int i=0;i<days.length;i++){
+            System.out.println(days[i]);
+        }
+
+    }
+}
+
+
+OUTPUT
+
+Monday
+Tuesday
+Wednesday
+Thursday
+Friday
+Saturday
+Sunday
+
+Process finished with exit code 0
+
+====================================================================
+
+import java.util.*;
+public class Que7b {
+
+    public static void main(String[] args) {
+        Calendar calendar = Calendar.getInstance();
+        int day = calendar.get(Calendar.DAY_OF_WEEK);
+
+
+
+        String days[]={"Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"};
+        for(int i=0;i<days.length;i++){
+
+            if(i==day-1)
+               continue;
+            System.out.println(days[i]);
+        }
+
+    }
+}
+
+
+OUTPUT
+
+Sunday
+Monday
+Wednesday
+Thursday
+Friday
+Saturday
+
+Process finished with exit code 0
+
+
+==================================================================
+
+import java.util.*;
+public class Que7c {
+    public static void main(String[] args) {
+
+
+        Date d=new Date();
+        int todaydate= d.getDate();
+        for(int i=1;i<=30;i++){
+            if(todaydate+1==i)
+                break;
+            System.out.print(i+" ");
+        }
+        System.out.println();
+    }
+}
+
+
+OUTPUT
+
+1 2 3 4 5 6 7 
+
+
+========================================
+
+public class Que8a {
+
+    public static void main(String[] args) {
+        for(int i=1;i<=5;i++)
+        {
+            for(int j=1;j<=5;j++)
+            {
+                if(j<=i)
+                    System.out.print("*");
+                else
+                    System.out.print(" ");
+            }
+            System.out.println();
+        }
+    }
+}
+
+
+OUTPUT
+
+*    
+**   
+***  
+**** 
+*****
+
+Process finished with exit code 0
+
+===========================================================
+
+public class Ques8b {
+
+    public static void main(String[] args) {
+        for(int i=1;i<=6;i++)
+        {
+            char k='A';
+            for(int j=1;j<=6;j++)
+            {
+                if(j<=7-i) {
+                    System.out.print(k);
+                    k++;
+                }
+                else
+                    System.out.print(" ");
+            }
+            System.out.println();
+
+        }
+
+        for(int l=1;l<=6;l++)
+        { char k='A';
+            for(int m=1;m<=6;m++){
+                if(m<=l) {
+                    System.out.print(k);
+                    k++;
+                }
+                else
+                    System.out.print(" ");
+
+            }
+            System.out.println();
+        }
+
+
+
+    }
+}
+
+
+OUTPUT
+
+ABCDEF
+ABCDE 
+ABCD  
+ABC   
+AB    
+A     
+A     
+AB    
+ABC   
+ABCD  
+ABCDE 
+ABCDEF
+
+Process finished with exit code 0
+
+
+=======================================================
+
+public class Que8c {
+
+    public static void main(String[] args) {
+        for(int i=1;i<=5;i++)
+        {
+            for(int j=1;j<=9;j++)
+            {
+                if(j>=i && j<=10-i)
+                    System.out.print("*");
+                else
+                    System.out.print(" ");
+            }
+            System.out.println();
+        }
+    }
+}
+
+
+
+OUTPUT
+
+*********
+ ******* 
+  *****  
+   ***   
+    *    
+
+Process finished with exit code 0
+
+
+===================================================
+
+public class Que8d {
+    public static void main(String[] args) {
+        int k=0;
+        for(int i=1;i<=11;i++)
+        {
+            char x='A';
+            if(i<=6)
+                k++;
+            else
+                k--;
+            for(int j=1;j<=6;j++)
+            {
+                if(j<=k) {
+                    System.out.print(x);
+                    x++;
+                }
+                else
+                    System.out.print(" ");
+            }
+            System.out.println();
+        }
+    }
+}
+
+
+OUTPUT
+
+A     
+AB    
+ABC   
+ABCD  
+ABCDE 
+ABCDEF
+ABCDE 
+ABCD  
+ABC   
+AB    
+A     
+
+Process finished with exit code 0
+
+
+======================================================
+
+
+public class Que8e {
+
+    public static void main(String[] args) {
+        int k=0;
+        for(int i=1;i<=9;i++)
+        {
+            if(i<=5)
+                k++;
+            else k--;
+            for(int j=1;j<=9;j++)
+            {
+                if(j>=6-k && j<=4+k)
+                    System.out.print("*");
+                else
+                    System.out.print(" ");
+            }
+            System.out.println();
+        }
+    }
+}
+
+
+
+OUTPUT
+
+    *    
+   ***   
+  *****  
+ ******* 
+*********
+ ******* 
+  *****  
+   ***   
+    *    
+
+Process finished with exit code 0
+
+
+
+=========================================================
+
+

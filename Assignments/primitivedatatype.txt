@@ -1,0 +1,145 @@
+INT
+
+public class Main
+{
+	public static void main(String[] args) {
+	    int sum;
+	    int Num1 = 2147483648;
+	    int Num2 = 2147483647;
+	    sum=Num1+Num2;
+	    
+	    
+		System.out.println(sum);
+	}
+}
+
+//error: integer number too large
+
+
+
+public class Main
+{
+	public static void main(String[] args) {
+	    int sum;
+	    int Num1 = 2147483646;
+	    int Num2 = 2147483647;
+	    sum=Num1+Num2;
+	    
+	    
+		System.out.println(sum);
+	}
+}
+
+//output =-3   (signed value)
+//can be typecasted to long
+
+==========================================================================
+LONG
+
+public class Main
+{
+	public static void main(String[] args) {
+	    long sum;
+	    long Num1 = 9223372036854775807L;
+	    long Num2 = 9223372036854775807L;
+	    sum=Num1+Num2;
+	    
+	    
+		System.out.println(sum);
+	}
+}
+
+
+//output= -2 (signed value)
+
+==========================================================================
+
+
+BYTE
+
+public class Main
+{
+	public static void main(String[] args) {
+	    byte sum;
+	    byte Num1 = 127;
+	    byte Num2 = 127;
+	    sum=Num1+Num2;
+	    
+	    
+		System.out.println(sum);
+	}
+}
+
+//error: incompatible types: possible lossy conversion from int to byte
+
+===========================================================================
+
+SHORT
+
+public class Main
+{
+	public static void main(String[] args) {
+	    short sum;
+	    short Num1 = 32767;
+	    short Num2 = 32767;
+	    sum=Num1+Num2;
+	    
+	    
+		System.out.println(sum);
+	}
+}
+
+//error: incompatible types: possible lossy conversion from int to short
+
+=============================================================================
+
+
+FLOAT
+
+public class Main
+{
+	public static void main(String[] args) {
+	    float sum;
+	    float Num1 = 340282346638528860000000000000000000000.000000f;
+	    float Num2 = 340282346638528860000000000000000000000.000000f;
+	    sum=Num1+Num2;
+	    
+	    
+		System.out.println(sum);
+	}
+}
+
+
+//Infinity
+//can be typecasted to double 
+
+===============================================================================
+DOUBLE  
+
+
+public class Main
+{
+	public static void main(String[] args) {
+	    double sum;
+	    double Num1 = 1.79769313486231570e+308d;
+	    double Num2 = 1.79769313486231570e+308d;
+	    sum=Num1+Num2;
+	    
+	    
+		System.out.println(sum);
+	}
+}
+
+
+//Infinity
+
+
+===============================================================================
+
+Addition or any arithmetic operation is not possible on boolean
+
+
+===============================================================================
+
+Arithmetic operation on char is not possible 
+

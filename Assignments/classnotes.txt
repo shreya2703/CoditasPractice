@@ -1,0 +1,3 @@
+when we use primitives and string we use value 
+if we use object then we use ref attribute to give the property
+what is inner bean 
